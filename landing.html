@@ -1,0 +1,5101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PreFlight Landing Page</title>
+  <link rel="preload" as="image" href="herolightmode-optimized.jpg" fetchpriority="high">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --site-font: "Space Grotesk", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+      --hero-light-image: url("herolightmode-optimized.jpg");
+      --hero-dark-image: url("heronightmode-optimized.jpg");
+      --login-image: url("imafeforlogin popup.png");
+      --course-light-image: url("PPL-optimized.jpg");
+      --course-dark-image: url("PPL-nm-optimized.jpg");
+      --course-ppl-light-image: url("PPL-optimized.jpg");
+      --course-ppl-dark-image: url("PPL-nm-optimized.jpg");
+      --course-ir-light-image: url("PPL2-optimized.jpg");
+      --course-ir-dark-image: url("PPL2-nm-optimized.jpg");
+      --course-cpl-light-image: url("CPL-optimized.jpg");
+      --course-cpl-dark-image: url("CPL-nm-optimized.jpg");
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--site-font);
+      font-weight: 700;
+      color: #06264d;
+      background:
+        radial-gradient(circle at 9% 715px, rgba(188, 230, 255, 0.46) 0 10%, transparent 24%),
+        radial-gradient(circle at 88% 760px, rgba(255, 181, 109, 0.30) 0 5%, transparent 18%),
+        linear-gradient(180deg, #f8fcff 0%, #ffffff 32%, #ffffff 100%);
+      position: relative;
+      overflow-x: hidden;
+      --glass-sheen: rgba(255, 255, 255, 0.74);
+      --glass-rim: rgba(255, 255, 255, 0.82);
+      --glass-shadow: rgba(35, 91, 137, 0.18);
+      --sky-glass-border: rgba(221, 244, 255, 0.72);
+      --sky-glass-blue: rgba(213, 242, 255, 0.62);
+      --sky-glass-surface: rgba(245, 252, 255, 0.58);
+      --sunlight: #ff7426;
+      --sunlight-soft: rgba(255, 164, 91, 0.18);
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 856px;
+      min-height: 856px;
+      background: var(--hero-light-image);
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      z-index: 0;
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 86%, transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 0%, #000 86%, transparent 100%);
+    }
+
+    body::after {
+      content: "";
+      position: absolute;
+      top: 580px;
+      right: 40px;
+      z-index: 1;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.64);
+      color: rgba(6, 38, 77, 0.55);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      display: none;
+    }
+
+    .topbar-wrap {
+      width: 100%;
+      margin: 0 auto;
+      padding: 16px 0 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 50;
+    }
+
+    .topbar {
+      width: min(1380px, calc(100% - 96px));
+      max-width: 1380px;
+      margin: 0 auto;
+      height: 58px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 18px;
+      justify-content: space-between;
+      padding: 0 20px;
+      border: 1px solid var(--sky-glass-border);
+      border-radius: 20px;
+      background:
+        radial-gradient(ellipse at 16% 0%, rgba(255, 255, 255, 0.96), transparent 30%),
+        radial-gradient(ellipse at 82% 18%, rgba(204, 239, 255, 0.58), transparent 36%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.74), rgba(228, 246, 255, 0.5));
+      box-shadow:
+        0 18px 48px rgba(35, 91, 137, 0.11),
+        inset 0 1px 0 rgba(255, 255, 255, 0.94),
+        inset 0 -14px 26px rgba(109, 188, 239, 0.08);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .topbar-wrap.is-minimized {
+      padding-top: 10px;
+    }
+
+    .topbar-wrap.is-minimized .topbar {
+      width: min(860px, calc(100% - 96px));
+      height: 46px;
+      padding: 0 14px;
+      border-radius: 16px;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.94), transparent 30%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(225, 244, 255, 0.6));
+      box-shadow:
+        0 16px 38px rgba(35, 91, 137, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.94),
+        inset 0 -10px 20px rgba(109, 188, 239, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 210px;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid rgba(161, 217, 249, 0.42);
+      background:
+        radial-gradient(circle at 34% 24%, rgba(255, 255, 255, 0.98), transparent 34%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(218, 242, 255, 0.78));
+      box-shadow: 0 8px 18px rgba(38, 99, 151, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      color: #0b3b70;
+    }
+
+    .topbar-wrap.is-minimized .logo-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    .brand-name {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1;
+    }
+
+    .brand-tagline {
+      margin-top: 4px;
+      max-height: 12px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: #6e879f;
+      overflow: hidden;
+    }
+
+    .topbar-wrap.is-minimized .brand {
+      min-width: 150px;
+      gap: 10px;
+    }
+
+    .topbar-wrap.is-minimized .brand-tagline {
+      margin-top: 0;
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-4px);
+      pointer-events: none;
+    }
+
+    .nav-links {
+      justify-self: center;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px;
+      border: 1px solid rgba(178, 226, 252, 0.34);
+      border-radius: 16px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.42), rgba(224, 244, 255, 0.26));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.76);
+    }
+
+    .topbar-wrap.is-minimized .nav-links {
+      padding: 3px;
+      border-radius: 13px;
+    }
+
+    .nav-links a {
+      min-width: 82px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      color: #17375d;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 750;
+      white-space: nowrap;
+      transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .topbar-wrap.is-minimized .nav-links a {
+      min-width: 72px;
+      height: 28px;
+      border-radius: 10px;
+      font-size: 12px;
+    }
+
+    .nav-links a.is-active {
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(232, 248, 255, 0.58));
+      box-shadow:
+        0 8px 18px rgba(35, 91, 137, 0.09),
+        inset 0 1px 0 rgba(255, 255, 255, 0.94),
+        inset 0 -8px 16px rgba(255, 164, 91, 0.06);
+    }
+
+    .nav-links a:hover {
+      color: #ff7426;
+      background: rgba(255, 255, 255, 0.58);
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .topbar-wrap.is-minimized .nav-actions {
+      gap: 8px;
+    }
+
+    .icon-btn,
+    .login-btn,
+    .start-btn {
+      height: 36px;
+      border: 1px solid rgba(178, 226, 252, 0.38);
+      border-radius: 14px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(226, 246, 255, 0.5));
+      color: #0c2b52;
+      font-family: inherit;
+      font-weight: 750;
+      box-shadow: 0 10px 24px rgba(35, 91, 137, 0.09), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .icon-btn:hover,
+    .login-btn:hover,
+    .start-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(35, 91, 137, 0.16);
+    }
+
+    .icon-btn {
+      width: 36px;
+      display: grid;
+      place-items: center;
+    }
+
+    .login-btn {
+      padding: 0 17px;
+      font-size: 13px;
+    }
+
+    .start-btn {
+      padding: 0 20px;
+      border: none;
+      color: white;
+      font-size: 14px;
+      background:
+        radial-gradient(circle at 24% 18%, rgba(255, 235, 207, 0.45), transparent 32%),
+        linear-gradient(135deg, #ffa45b, #ff7426);
+      box-shadow: 0 16px 34px rgba(255, 126, 45, 0.26);
+    }
+
+    .topbar-wrap.is-minimized .icon-btn,
+    .topbar-wrap.is-minimized .login-btn,
+    .topbar-wrap.is-minimized .start-btn {
+      height: 32px;
+      border-radius: 12px;
+    }
+
+    .topbar-wrap.is-minimized .icon-btn {
+      width: 32px;
+    }
+
+    .topbar-wrap.is-minimized .login-btn {
+      padding: 0 14px;
+      font-size: 12px;
+    }
+
+    .topbar-wrap.is-minimized .start-btn {
+      padding: 0 16px;
+      font-size: 13px;
+    }
+
+    .login-modal-overlay,
+    .learning-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: grid;
+      place-items: center;
+      padding: 72px 20px 28px;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(126, 198, 242, 0.18), transparent 34%),
+        rgba(6, 28, 56, 0.46);
+      backdrop-filter: blur(11px) saturate(120%);
+      -webkit-backdrop-filter: blur(11px) saturate(120%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 260ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .login-modal-overlay.is-open,
+    .learning-modal-overlay.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    body.login-modal-open,
+    body.learning-modal-open {
+      overflow: hidden;
+    }
+
+    .login-modal,
+    .learning-modal {
+      position: relative;
+      width: min(470px, 100%);
+      padding: 38px 34px 32px;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 20px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.68), rgba(229, 247, 255, 0.42)),
+        rgba(247, 252, 255, 0.42);
+      box-shadow:
+        0 30px 70px rgba(15, 52, 88, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.92),
+        inset 0 -22px 46px rgba(84, 168, 226, 0.08);
+      backdrop-filter: blur(34px) saturate(170%);
+      -webkit-backdrop-filter: blur(34px) saturate(170%);
+      color: #0b2d58;
+      font-family: "Manrope", system-ui, sans-serif;
+      transform: translateY(18px) scale(0.975);
+      transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .login-modal {
+      width: min(430px, calc(100vw - 40px));
+      padding: 34px 30px 28px;
+      isolation: isolate;
+      overflow: hidden;
+      border-color: rgba(225, 246, 255, 0.78);
+      background:
+        radial-gradient(ellipse at 18% 0%, rgba(255, 255, 255, 0.88), transparent 32%),
+        radial-gradient(ellipse at 88% 14%, rgba(199, 235, 255, 0.62), transparent 36%),
+        radial-gradient(ellipse at 12% 98%, rgba(255, 190, 126, 0.13), transparent 32%),
+        linear-gradient(145deg, rgba(248, 253, 255, 0.82), rgba(224, 243, 255, 0.58));
+      box-shadow:
+        0 32px 76px rgba(11, 48, 84, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.96),
+        inset 0 -26px 52px rgba(109, 188, 239, 0.1);
+    }
+
+    .login-modal::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      z-index: -1;
+      border-radius: 18px;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 24% 16%, rgba(255, 255, 255, 0.56), transparent 28%),
+        radial-gradient(ellipse at 58% 8%, rgba(255, 255, 255, 0.34), transparent 20%),
+        radial-gradient(ellipse at 86% 22%, rgba(255, 255, 255, 0.28), transparent 18%);
+      opacity: 0.78;
+    }
+
+    .login-modal-overlay {
+      align-items: center;
+      min-height: 100dvh;
+      padding: clamp(74px, 8vh, 96px) clamp(18px, 4vw, 42px) clamp(24px, 5vh, 42px);
+      overflow-y: auto;
+      background: rgba(248, 253, 255, 0.1);
+      isolation: isolate;
+    }
+
+    .login-modal-overlay::before {
+      content: "";
+      position: fixed;
+      inset: -28px;
+      z-index: -1;
+      background:
+        var(--login-image);
+      background-size: cover;
+      background-position: center top;
+      filter: blur(12px) saturate(118%);
+      transform: scale(1.03);
+    }
+
+    .login-modal-overlay::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: rgba(248, 253, 255, 0.22);
+    }
+
+    .login-modal-overlay.is-open .login-modal,
+    .learning-modal-overlay.is-open .learning-modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .login-modal {
+      display: grid;
+      z-index: 1;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      width: min(1003px, calc(100vw - 48px));
+      min-height: min(680px, calc(100dvh - 128px));
+      max-height: calc(100dvh - 112px);
+      padding: 0;
+      border-radius: 7px;
+      overflow: hidden;
+      border: 1px solid rgba(237, 249, 255, 0.84);
+      background:
+        linear-gradient(145deg, rgba(250, 254, 255, 0.88), rgba(226, 244, 255, 0.58)),
+        rgba(248, 253, 255, 0.64);
+      box-shadow:
+        0 34px 86px rgba(17, 61, 100, 0.24),
+        0 12px 32px rgba(255, 126, 45, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(30px) saturate(160%);
+      -webkit-backdrop-filter: blur(30px) saturate(160%);
+    }
+
+    .login-modal::before {
+      display: none;
+    }
+
+    .login-form-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(34px, 5vw, 58px);
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.96), transparent 34%),
+        radial-gradient(ellipse at 84% 18%, rgba(210, 240, 255, 0.58), transparent 40%),
+        linear-gradient(150deg, rgba(255, 255, 255, 0.88), rgba(239, 250, 255, 0.7));
+    }
+
+    .login-brand-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      width: fit-content;
+      margin-bottom: clamp(28px, 4vh, 42px);
+      color: #0b315f;
+    }
+
+    .login-brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(118, 171, 214, 0.22);
+      border-radius: 15px;
+      background:
+        radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.94), transparent 34%),
+        linear-gradient(145deg, rgba(226, 245, 255, 0.95), rgba(255, 246, 237, 0.86));
+      box-shadow: 0 12px 26px rgba(35, 91, 137, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+    }
+
+    .login-brand-mark svg {
+      width: 22px;
+      height: 22px;
+      color: #1f6fae;
+      stroke-width: 2.2;
+    }
+
+    .login-brand-copy strong,
+    .login-brand-copy span {
+      display: block;
+    }
+
+    .login-brand-copy strong {
+      font-size: 15px;
+      line-height: 1.1;
+      font-weight: 850;
+    }
+
+    .login-brand-copy span {
+      margin-top: 3px;
+      color: #6b849c;
+      font-size: 11px;
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .login-modal h2 {
+      text-align: left;
+      color: #082b55;
+      font-size: clamp(34px, 3.2vw, 46px);
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+      font-weight: 850;
+    }
+
+    .login-modal-subtitle {
+      max-width: 360px;
+      margin: 14px 0 30px;
+      text-align: left;
+      color: #5e7892;
+      font-size: 15px;
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    .login-form {
+      max-width: 390px;
+      gap: 14px;
+    }
+
+    .login-field {
+      gap: 8px;
+    }
+
+    .login-field label {
+      color: #173a66;
+      font-size: 12px;
+      letter-spacing: 0.035em;
+      text-transform: uppercase;
+    }
+
+    .login-input-wrap {
+      height: 54px;
+      border-color: rgba(118, 171, 214, 0.22);
+      border-radius: 16px;
+      background:
+        radial-gradient(ellipse at 16% 0%, rgba(255, 255, 255, 0.86), transparent 36%),
+        rgba(248, 253, 255, 0.82);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.92),
+        0 12px 26px rgba(35, 91, 137, 0.06);
+    }
+
+    .login-submit,
+    .login-google-btn {
+      height: 54px;
+      border-radius: 16px;
+    }
+
+    .login-submit {
+      margin-top: 2px;
+      background:
+        radial-gradient(circle at 22% 10%, rgba(255, 237, 208, 0.54), transparent 34%),
+        linear-gradient(135deg, #ffb163 0%, #ff7d2e 52%, #f0641e 100%);
+      box-shadow: 0 18px 32px rgba(255, 126, 45, 0.28), inset 0 1px 0 rgba(255, 235, 207, 0.48);
+    }
+
+    .login-divider {
+      margin: 2px 0;
+    }
+
+    .login-divider span {
+      color: #8fa6ba;
+    }
+
+    .login-google-btn {
+      margin-top: 0;
+      border-color: rgba(118, 171, 214, 0.24);
+      background: rgba(255, 255, 255, 0.78);
+      color: #14345d;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 10px 22px rgba(35, 91, 137, 0.06);
+    }
+
+    .login-status {
+      margin-top: 6px;
+      text-align: left;
+    }
+
+    .login-signup {
+      max-width: 390px;
+      margin-top: 18px;
+      padding-top: 18px;
+      text-align: left;
+    }
+
+    .login-visual-panel {
+      position: relative;
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(28px, 4vw, 48px);
+      overflow: hidden;
+      color: #eff9ff;
+      background: var(--login-image);
+      background-size: cover;
+      background-position: 62% center;
+    }
+
+    .login-visual-panel::before {
+      display: none;
+    }
+
+    .login-visual-content {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 430px);
+      display: grid;
+      place-items: center;
+    }
+
+    .login-visual-kicker {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 12px;
+      border: 1px solid rgba(237, 249, 255, 0.42);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: #f5fbff;
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .login-visual-panel h3 {
+      max-width: 440px;
+      margin: 18px 0 24px;
+      color: #f8fcff;
+      font-size: clamp(28px, 3vw, 42px);
+      line-height: 1;
+      letter-spacing: -0.035em;
+      font-weight: 850;
+      text-shadow: 0 18px 38px rgba(7, 28, 53, 0.34);
+    }
+
+    .login-feature-list {
+      display: grid;
+      gap: 12px;
+      width: min(100%, 490px);
+      max-width: 490px;
+      justify-self: center;
+    }
+
+    .login-feature-row {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      align-items: center;
+      gap: 14px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .login-feature-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(201, 234, 255, 0.56);
+      border-radius: 15px;
+      background: rgba(244, 251, 255, 0.82);
+      color: #1f6fae;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+    }
+
+    .login-feature-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 2.15;
+    }
+
+    .login-feature-row strong {
+      display: block;
+      color: #1f6fae;
+      font-size: 14px;
+      line-height: 1.2;
+      font-weight: 850;
+    }
+
+    .login-feature-row span:last-child {
+      display: block;
+      margin-top: 4px;
+      color: #6fa8d4;
+      font-size: 12.5px;
+      line-height: 1.35;
+      font-weight: 650;
+    }
+
+    .login-close,
+    .learning-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(118, 171, 214, 0.22);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.66);
+      color: #17375d;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.86);
+    }
+
+    .login-close {
+      border-color: rgba(178, 226, 252, 0.38);
+      background:
+        radial-gradient(circle at 32% 18%, rgba(255, 255, 255, 0.92), transparent 34%),
+        rgba(236, 249, 255, 0.7);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        0 10px 20px rgba(35, 91, 137, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .login-close:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.92),
+        0 14px 26px rgba(35, 91, 137, 0.12);
+    }
+
+    .login-modal h2,
+    .learning-modal h2 {
+      margin: 0;
+      color: #082b55;
+      text-align: center;
+      font-size: 34px;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      font-weight: 800;
+    }
+
+    .login-modal h2 {
+      font-size: 28px;
+      letter-spacing: -0.04em;
+    }
+
+    .login-modal-subtitle,
+    .learning-modal-subtitle {
+      max-width: 320px;
+      margin: 10px auto 28px;
+      color: #607a96;
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.55;
+      font-weight: 600;
+    }
+
+    .login-modal-subtitle {
+      max-width: 290px;
+      margin-bottom: 22px;
+      color: #5b7894;
+      font-size: 13.5px;
+    }
+
+    .learning-modal {
+      width: min(720px, calc(100vw - 40px));
+      max-height: calc(100dvh - 40px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: clamp(28px, 4vh, 42px) clamp(20px, 4vw, 34px) clamp(22px, 4vh, 32px);
+      scrollbar-width: thin;
+      isolation: isolate;
+      background:
+        radial-gradient(ellipse at 18% 0%, rgba(255, 255, 255, 0.88), transparent 30%),
+        radial-gradient(ellipse at 92% 18%, rgba(199, 235, 255, 0.72), transparent 34%),
+        radial-gradient(ellipse at 18% 92%, rgba(255, 190, 126, 0.16), transparent 36%),
+        linear-gradient(145deg, rgba(247, 252, 255, 0.78), rgba(224, 243, 255, 0.54));
+      border-color: rgba(225, 246, 255, 0.74);
+      box-shadow:
+        0 32px 76px rgba(11, 48, 84, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.96),
+        inset 0 -28px 56px rgba(109, 188, 239, 0.1);
+    }
+
+    .learning-modal::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      z-index: -1;
+      pointer-events: none;
+      border-radius: 18px;
+      background:
+        radial-gradient(ellipse at 24% 18%, rgba(255, 255, 255, 0.62), transparent 26%),
+        radial-gradient(ellipse at 44% 22%, rgba(255, 255, 255, 0.44), transparent 20%),
+        radial-gradient(ellipse at 72% 12%, rgba(255, 255, 255, 0.34), transparent 18%);
+      opacity: 0.78;
+      filter: blur(0.2px);
+    }
+
+    .learning-modal-overlay {
+      padding: 20px;
+      background:
+        radial-gradient(ellipse at 50% 12%, rgba(218, 242, 255, 0.56), transparent 38%),
+        radial-gradient(ellipse at 18% 88%, rgba(255, 178, 104, 0.14), transparent 34%),
+        linear-gradient(180deg, rgba(10, 42, 76, 0.36), rgba(6, 28, 56, 0.52));
+    }
+
+    .learning-modal h2 {
+      font-size: 24px;
+    }
+
+    .learning-panel {
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .learning-panel[hidden] {
+      display: none;
+    }
+
+    .learning-options {
+      display: grid;
+      gap: clamp(8px, 1.4vh, 12px);
+      margin-top: clamp(14px, 2vh, 22px);
+    }
+
+    .learning-option {
+      min-height: clamp(88px, 14vh, 1.2in);
+      display: grid;
+      grid-template-columns: 58px 1fr auto;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid rgba(143, 205, 241, 0.34);
+      border-radius: 18px;
+      color: #10345f;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(229, 247, 255, 0.5)),
+        rgba(245, 251, 255, 0.48);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88), 0 10px 22px rgba(35, 91, 137, 0.07);
+      font-family: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .learning-option:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 164, 91, 0.7);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 16px 32px rgba(255, 126, 45, 0.13);
+    }
+
+    .learning-option.is-selected {
+      border-color: rgba(255, 116, 38, 0.78);
+      background:
+        linear-gradient(135deg, rgba(255, 246, 237, 0.92), rgba(240, 250, 255, 0.78)),
+        rgba(255, 255, 255, 0.56);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.94), 0 18px 34px rgba(255, 126, 45, 0.18);
+    }
+
+    .learning-option.is-selected .learning-option-icon {
+      color: #ffffff;
+      background: linear-gradient(135deg, #ffa45b, #ff7426);
+      box-shadow: 0 12px 24px rgba(255, 126, 45, 0.2);
+    }
+
+    .learning-option-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #1f6fae;
+      background:
+        radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.96), transparent 34%),
+        rgba(219, 242, 255, 0.82);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92), 0 10px 20px rgba(35, 91, 137, 0.09);
+    }
+
+    .learning-option-icon svg {
+      width: 30px;
+      height: 30px;
+      stroke-width: 2.2;
+    }
+
+    .learning-option strong {
+      display: block;
+      color: #0b2f55;
+      font-size: 15px;
+      line-height: 1.25;
+      font-weight: 850;
+    }
+
+    .learning-option span:last-child {
+      display: block;
+      margin-top: 5px;
+      color: #63809c;
+      font-size: 12.5px;
+      line-height: 1.35;
+      font-weight: 650;
+    }
+
+    .learning-option-arrow {
+      color: #ff7426;
+      font-size: 24px;
+      font-weight: 850;
+      line-height: 1;
+    }
+
+    .learning-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: clamp(14px, 2vh, 20px);
+    }
+
+    .learning-cancel,
+    .learning-continue,
+    .instruction-back,
+    .instruction-start {
+      height: 48px;
+      border-radius: 16px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .learning-option:focus-visible,
+    .learning-cancel:focus-visible,
+    .learning-continue:focus-visible,
+    .instruction-back:focus-visible,
+    .instruction-start:focus-visible,
+    .learning-close:focus-visible {
+      outline: 3px solid rgba(104, 188, 238, 0.52);
+      outline-offset: 3px;
+    }
+
+    .learning-cancel,
+    .instruction-back {
+      border: 1px solid rgba(118, 171, 214, 0.24);
+      color: #17375d;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88), 0 10px 22px rgba(35, 91, 137, 0.08);
+    }
+
+    .learning-continue,
+    .instruction-start {
+      border: 0;
+      color: #ffffff;
+      background: linear-gradient(135deg, #ffa45b, #ff7426);
+      box-shadow: 0 16px 30px rgba(255, 126, 45, 0.24);
+    }
+
+    .learning-continue:disabled {
+      color: rgba(80, 107, 130, 0.66);
+      background: rgba(229, 243, 252, 0.7);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+      cursor: not-allowed;
+    }
+
+    .learning-cancel:hover,
+    .learning-continue:hover,
+    .instruction-back:hover,
+    .instruction-start:hover {
+      transform: translateY(-2px);
+    }
+
+    .learning-continue:disabled:hover {
+      transform: none;
+    }
+
+    .learning-state-message {
+      min-height: 188px;
+      display: grid;
+      place-items: center;
+      margin-top: 22px;
+      padding: 24px;
+      border: 1px solid rgba(118, 171, 214, 0.22);
+      border-radius: 18px;
+      color: #17375d;
+      background: rgba(255, 255, 255, 0.68);
+      text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88), 0 12px 26px rgba(35, 91, 137, 0.08);
+      font-size: 15px;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .instruction-box,
+    .next-box {
+      margin-top: clamp(12px, 2vh, 18px);
+      padding: clamp(14px, 2.2vh, 20px);
+      border: 1px solid rgba(147, 208, 242, 0.24);
+      border-radius: 18px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.62), rgba(230, 247, 255, 0.36)),
+        rgba(247, 252, 255, 0.38);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.84), 0 10px 22px rgba(35, 91, 137, 0.06);
+    }
+
+    .selected-course-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: fit-content;
+      margin: -10px auto 0;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 164, 91, 0.3);
+      border-radius: 999px;
+      background: rgba(255, 249, 244, 0.68);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88), 0 12px 24px rgba(255, 126, 45, 0.08);
+    }
+
+    .selected-course-icon {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #ffffff;
+      background: linear-gradient(135deg, #ffa45b, #ff7426);
+      box-shadow: 0 10px 20px rgba(255, 126, 45, 0.18);
+    }
+
+    .selected-course-icon svg {
+      width: 15px;
+      height: 15px;
+      stroke-width: 2.3;
+    }
+
+    .selected-course-box strong {
+      display: block;
+      color: #0b2f55;
+      font-size: 12.5px;
+      line-height: 1;
+      font-weight: 850;
+    }
+
+    .instruction-box h3,
+    .next-box h3 {
+      margin: 0 0 clamp(10px, 1.6vh, 16px);
+      color: #0b2f55;
+      text-align: left;
+      font-size: 15px;
+      line-height: 1.25;
+      font-weight: 850;
+    }
+
+    .instruction-list {
+      display: grid;
+      gap: clamp(8px, 1.2vh, 13px);
+    }
+
+    .instruction-item {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      align-items: center;
+      gap: 12px;
+      color: #4d6884;
+      font-size: 12.5px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .instruction-icon {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #1f6fae;
+      background:
+        radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.92), transparent 36%),
+        rgba(211, 238, 255, 0.86);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .instruction-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 2.3;
+    }
+
+    .next-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .next-step {
+      min-height: clamp(86px, 13vh, 108px);
+      padding: clamp(12px, 1.8vh, 15px) 12px;
+      border: 1px solid rgba(118, 171, 214, 0.14);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.44);
+    }
+
+    .next-step-number {
+      display: block;
+      color: #ff7426;
+      font-size: 20px;
+      line-height: 1;
+      font-weight: 850;
+    }
+
+    .next-step strong {
+      display: block;
+      margin-top: 12px;
+      color: #0b2f55;
+      font-size: 13px;
+      line-height: 1.2;
+      font-weight: 850;
+    }
+
+    .next-step span:last-child {
+      display: block;
+      margin-top: 6px;
+      color: #63809c;
+      font-size: 11.5px;
+      line-height: 1.35;
+      font-weight: 650;
+    }
+
+    .learning-modal-eyebrow {
+      display: flex;
+      align-items: center;
+      width: fit-content;
+      height: 28px;
+      margin: 0 auto 14px;
+      padding: 0 12px;
+      border: 1px solid rgba(255, 164, 91, 0.4);
+      border-radius: 999px;
+      color: #d7661c;
+      background: rgba(255, 244, 234, 0.72);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .login-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .login-field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .login-field label {
+      color: #15365f;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .forgot-link,
+    .signup-link {
+      color: #1f6fae;
+      font-size: 12.5px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .forgot-link {
+      justify-self: end;
+      margin-top: -4px;
+    }
+
+    .forgot-link:hover,
+    .signup-link:hover {
+      color: #ff7426;
+    }
+
+    #loginModal[data-auth-mode="signup"] .forgot-link {
+      display: none;
+    }
+
+    .confirm-password-field {
+      display: none;
+    }
+
+    #loginModal[data-auth-mode="signup"] .confirm-password-field {
+      display: grid;
+    }
+
+    #loginModal[data-auth-mode="signup"] .login-divider {
+      margin-top: -4px;
+    }
+
+    #loginModal[data-auth-mode="signup"] .login-google-btn {
+      margin-top: -2px;
+    }
+
+    #loginModal[data-auth-mode="signup"] .login-visual-content {
+      transform: translateY(-0.3in);
+    }
+
+    .login-input-wrap {
+      height: 50px;
+      display: grid;
+      grid-template-columns: 22px 1fr auto;
+      align-items: center;
+      gap: 10px;
+      padding: 0 14px;
+      border: 1px solid rgba(178, 226, 252, 0.42);
+      border-radius: 15px;
+      background:
+        radial-gradient(ellipse at 16% 0%, rgba(255, 255, 255, 0.76), transparent 36%),
+        rgba(236, 249, 255, 0.62);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.88),
+        0 10px 24px rgba(35, 91, 137, 0.07);
+    }
+
+    .login-input-wrap:focus-within {
+      border-color: rgba(255, 164, 91, 0.78);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        0 0 0 4px rgba(255, 164, 91, 0.14),
+        0 12px 26px rgba(35, 91, 137, 0.08);
+    }
+
+    .login-input-wrap svg {
+      width: 18px;
+      height: 18px;
+      color: #5f83a4;
+    }
+
+    .login-input-wrap input {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #092a52;
+      font: 700 14px/1 "Manrope", system-ui, sans-serif;
+    }
+
+    .login-input-wrap input::placeholder {
+      color: #91a9bd;
+      font-weight: 650;
+    }
+
+    .password-toggle {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 10px;
+      background: transparent;
+      color: #557796;
+      cursor: pointer;
+    }
+
+    .login-google-btn,
+    .login-submit {
+      height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 15px;
+      font-family: "Manrope", system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .login-google-btn {
+      margin-top: 4px;
+      border: 1px solid rgba(178, 226, 252, 0.38);
+      background:
+        radial-gradient(ellipse at 18% 0%, rgba(255, 255, 255, 0.84), transparent 34%),
+        rgba(236, 249, 255, 0.56);
+      color: #14345d;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+
+    .login-google-btn:hover,
+    .login-submit:hover {
+      transform: translateY(-2px);
+    }
+
+    .google-mark {
+      width: 20px;
+      height: 20px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: conic-gradient(from -40deg, #4285f4 0 25%, #34a853 0 50%, #fbbc05 0 75%, #ea4335 0);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .login-divider {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+      color: #8aa1b7;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .login-divider::before,
+    .login-divider::after {
+      content: "";
+      height: 1px;
+      background: rgba(118, 171, 214, 0.22);
+    }
+
+    .login-submit {
+      border: 0;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at 22% 14%, rgba(255, 235, 207, 0.42), transparent 32%),
+        linear-gradient(135deg, #ffa45b, #ff7426);
+      box-shadow: 0 18px 34px rgba(255, 126, 45, 0.28);
+    }
+
+    .login-submit:disabled,
+    .login-google-btn:disabled {
+      opacity: 0.68;
+      cursor: wait;
+      transform: none;
+    }
+
+    .login-status {
+      min-height: 34px;
+      margin: -2px 0 0;
+      color: #d7661c;
+      text-align: left;
+      font-size: 12px;
+      line-height: 1.35;
+      font-weight: 750;
+      overflow: visible;
+      display: flex;
+      align-items: center;
+    }
+
+    .login-status:empty {
+      min-height: 14px;
+    }
+
+    .login-signup {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(178, 226, 252, 0.28);
+      color: #63809c;
+      text-align: center;
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    svg {
+      width: 17px;
+      height: 17px;
+      stroke-width: 2.2;
+    }
+    .features-page {
+      display: none;
+      width: 100%;
+      padding-top: clamp(108px, 9vw, 136px);
+      padding-bottom: clamp(34px, 5vw, 72px);
+      position: relative;
+      z-index: 2;
+    }
+
+    .features-page .features-box {
+      --feature-gap-sm: clamp(14px, 1.5vw, 22px);
+      --feature-gap-md: clamp(24px, 3vw, 46px);
+      --feature-gap-lg: clamp(48px, 7vw, 92px);
+      width: min(1420px, calc(100% - 96px));
+      margin: 0 auto;
+      min-height: 0;
+      padding: clamp(30px, 4vw, 58px);
+      background:
+        radial-gradient(ellipse at 14% 0%, rgba(255, 255, 255, 0.8), transparent 30%),
+        radial-gradient(ellipse at 86% 10%, rgba(204, 239, 255, 0.42), transparent 38%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(225, 244, 255, 0.58)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(248, 253, 255, 0.76)),
+        url("feature-preview.png"),
+        rgba(245, 251, 255, 0.62);
+      background-size: cover;
+      background-position: center 38%;
+      background-repeat: no-repeat;
+    }
+
+    .features-page .site-info-section {
+      margin-top: 0;
+    }
+
+    body.view-home .features-page {
+      display: none;
+    }
+
+    body.view-features .hero-section {
+      display: none;
+    }
+
+    body.view-home .hero-actions {
+      opacity: 1;
+      transform: none;
+    }
+
+    body.view-features .features-page {
+      display: block;
+    }
+
+    body.view-features .features-page .under-hero-box,
+    body.view-features .features-page .site-info-section {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    .features-page .features-box::after {
+      width: 520px;
+      height: 520px;
+      right: auto;
+      left: -220px;
+      top: 46%;
+      background: radial-gradient(circle, rgba(255, 126, 45, 0.12), transparent 66%);
+    }
+
+    .features-page .features-box::before {
+      background:
+        radial-gradient(ellipse at 20% 12%, rgba(255, 255, 255, 0.58), transparent 26%),
+        radial-gradient(ellipse at 78% 10%, rgba(204, 239, 255, 0.28), transparent 34%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(225, 244, 255, 0.34)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.38), rgba(248, 253, 255, 0.56)),
+        url("feature-preview.png");
+      background-size: cover;
+      background-position: center 42%;
+      background-repeat: no-repeat;
+      mix-blend-mode: normal;
+      opacity: 1;
+    }
+
+    .features-page .site-info-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "intro"
+        "dashboard"
+        "quizzes";
+      gap: var(--feature-gap-lg);
+      align-items: start;
+    }
+
+    .features-page .features-intro {
+      grid-area: intro;
+      display: grid;
+      grid-template-columns: minmax(380px, 0.82fr) minmax(0, 1.18fr);
+      gap: clamp(18px, 2.4vw, 34px);
+      align-items: start;
+    }
+
+    .features-page .site-info-copy {
+      max-width: 590px;
+      padding: 0;
+      align-self: start;
+      justify-self: start;
+      transform: none;
+    }
+
+    .features-page .site-info-image {
+      width: 100%;
+      aspect-ratio: auto;
+      align-self: start;
+      justify-self: stretch;
+      transform: none;
+    }
+
+    .features-page .site-info-image img {
+      display: block;
+      width: min(100%, 860px);
+      max-width: 100%;
+      max-height: none;
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    body.is-ready .features-page .site-info-image img {
+      animation: none;
+      will-change: auto;
+    }
+
+    .features-page .site-info-copy h2 {
+      max-width: 620px;
+      margin-top: 18px;
+      font-size: clamp(42px, 5.6vw, 78px);
+      line-height: 0.92;
+      letter-spacing: -0.065em;
+    }
+
+    .features-page .site-info-copy p {
+      max-width: 570px;
+      margin-top: 22px;
+      font-size: clamp(15px, 1.25vw, 18px);
+      line-height: 1.6;
+    }
+
+    .features-page .site-info-points {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--feature-gap-sm);
+      margin-top: var(--feature-gap-md);
+    }
+
+    .features-page .site-info-point {
+      min-height: 104px;
+      padding: 18px 18px 20px;
+      border-radius: 18px;
+    }
+
+    .features-page .site-info-point strong {
+      font-size: 14px;
+    }
+
+    .features-page .site-info-point span {
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+
+    .features-page .site-info-dashboard {
+      grid-area: dashboard;
+      grid-template-columns: minmax(300px, 0.72fr) minmax(560px, 1.28fr);
+      gap: var(--feature-gap-md);
+      margin-top: 0;
+      align-items: center;
+    }
+
+    .features-page .site-info-dashboard:not(.site-info-quizzes) {
+      grid-area: quizzes;
+      margin-top: clamp(-230px, -14vw, -126px);
+    }
+
+    .features-page .site-info-dashboard-copy {
+      padding: 0;
+    }
+
+    .features-page .site-info-dashboard:not(.site-info-quizzes) .site-info-dashboard-copy {
+      align-self: center;
+      max-width: 500px;
+      padding-left: clamp(0px, 1.2vw, 18px);
+    }
+
+    .features-page .site-info-dashboard-copy strong {
+      max-width: 520px;
+      font-size: clamp(30px, 3vw, 48px);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+    }
+
+    .features-page .site-info-dashboard:not(.site-info-quizzes) .site-info-dashboard-copy strong {
+      max-width: 460px;
+      margin-top: 12px;
+    }
+
+    .features-page .site-info-dashboard-copy p {
+      max-width: 500px;
+      font-size: 14.5px;
+    }
+
+    .features-page .site-info-dashboard:not(.site-info-quizzes) .site-info-dashboard-copy p {
+      max-width: 430px;
+      margin-top: 16px;
+      line-height: 1.62;
+    }
+
+    .features-page .site-info-dashboard-copy ul {
+      grid-template-columns: 1fr;
+      gap: 9px;
+      max-width: 420px;
+      margin-top: 18px;
+    }
+
+    .features-page .site-info-dashboard-copy li {
+      font-size: 12.5px;
+    }
+
+    .features-page .site-info-dashboard:not(.site-info-quizzes) .site-info-dashboard-copy li {
+      font-size: 13px;
+      line-height: 1.42;
+    }
+
+    .features-page .site-info-image img,
+    .features-page .site-info-dashboard img {
+      filter: none;
+    }
+
+    .features-page .site-info-quizzes {
+      grid-area: dashboard;
+      grid-template-columns: minmax(560px, 1.25fr) minmax(300px, 0.75fr);
+      gap: var(--feature-gap-md);
+      margin-top: calc(var(--feature-gap-sm) * -1);
+      align-items: center;
+    }
+    .hero-section {
+      width: 100%;
+      margin: 0;
+      padding-top: 74px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-card {
+      position: relative;
+      width: min(1480px, calc(100% - 32px));
+      min-height: 500px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+      border-radius: 0;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .hero-image-placeholder {
+      display: none;
+    }
+
+    .hero-image-placeholder::after {
+      display: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(860px, 100%);
+      margin: 0 auto;
+      padding: 90px 58px 64px;
+      text-align: center;
+      transform: translateY(-42px);
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.96), transparent 34%),
+        rgba(232, 248, 255, 0.72);
+      border: 1px solid rgba(221, 244, 255, 0.7);
+      color: #1f5d92;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 22px rgba(35, 91, 137, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.88);
+    }
+
+    .hero-title {
+      margin: 18px auto 0;
+      max-width: 820px;
+      color: #06264d;
+      font-size: clamp(56px, 6.4vw, 96px);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+      font-weight: 700;
+      text-shadow: 0 18px 36px rgba(0, 29, 62, 0.24);
+    }
+
+    .hero-title .tilted-word {
+      display: inline-block;
+      color: #1f6fae;
+      font-style: italic;
+      font-weight: 700;
+      transform: rotate(-4deg) translateY(-2px);
+      transform-origin: center;
+      text-shadow: 0 18px 36px rgba(0, 29, 62, 0.18);
+    }
+
+    .hero-subtext {
+      max-width: 532px;
+      margin: 18px auto 0;
+      color: #5f6f82;
+      font-size: 17px;
+      line-height: 1.55;
+      font-weight: 600;
+      text-shadow: 0 1px 18px rgba(255, 255, 255, 0.9);
+    }
+
+    .hero-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      width: min(420px, 100%);
+      margin: 26px auto 0;
+    }
+
+    .hero-primary-btn,
+    .hero-secondary-btn,
+    .hero-sample-btn {
+      height: 46px;
+      padding: 0 24px;
+      border-radius: 15px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .hero-primary-btn {
+      border: none;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(255, 235, 207, 0.45), transparent 32%),
+        linear-gradient(135deg, #ffa45b, #ff7426);
+      box-shadow: 0 16px 34px rgba(255, 126, 45, 0.28);
+    }
+
+    .hero-secondary-btn {
+      border: 1px solid rgba(221, 244, 255, 0.64);
+      color: #17375d;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.92), transparent 34%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(226, 246, 255, 0.5));
+      box-shadow:
+        0 12px 28px rgba(35, 91, 137, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.92),
+        inset 0 -10px 18px rgba(109, 188, 239, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .hero-sample-btn {
+      grid-column: 1 / -1;
+      width: 100%;
+      border: 1px solid rgba(255, 164, 91, 0.92);
+      color: #0b2f55;
+      background:
+        radial-gradient(circle at 16% 10%, rgba(255, 255, 255, 0.92), transparent 34%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(255, 239, 222, 0.48));
+      box-shadow:
+        0 14px 30px rgba(255, 126, 45, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -10px 18px rgba(255, 164, 91, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .hero-primary-btn:hover,
+    .hero-secondary-btn:hover,
+    .hero-sample-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .under-hero-box {
+      width: min(1380px, calc(100% - 96px));
+      max-width: 1380px;
+      min-height: 126px;
+      margin: -28px auto 0;
+      position: relative;
+      z-index: 2;
+      display: block;
+      padding: 24px;
+      border-radius: 20px;
+      border: 1px solid var(--sky-glass-border);
+      background:
+        radial-gradient(ellipse at 18% 0%, rgba(255, 255, 255, 0.88), transparent 31%),
+        radial-gradient(ellipse at 76% 10%, rgba(210, 241, 255, 0.56), transparent 36%),
+        radial-gradient(ellipse at 86% 96%, rgba(255, 164, 91, 0.12), transparent 30%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.66), rgba(226, 246, 255, 0.42) 48%, rgba(255, 255, 255, 0.58)),
+        var(--sky-glass-surface);
+      box-shadow:
+        0 28px 70px var(--glass-shadow),
+        inset 0 1px 0 var(--glass-rim),
+        inset 0 -24px 52px rgba(90, 161, 215, 0.10);
+      backdrop-filter: blur(28px) saturate(150%);
+      -webkit-backdrop-filter: blur(28px) saturate(150%);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .under-hero-box::before,
+    .under-hero-box::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .under-hero-box::before {
+      inset: 1px;
+      border-radius: inherit;
+      background:
+        linear-gradient(115deg, rgba(255, 255, 255, 0.68), transparent 28%, rgba(109, 188, 239, 0.14) 54%, transparent 76%),
+        radial-gradient(ellipse at 26% 18%, rgba(255, 255, 255, 0.54), transparent 24%),
+        radial-gradient(ellipse at 86% 18%, rgba(255, 255, 255, 0.46), transparent 30%);
+      mix-blend-mode: screen;
+      opacity: 0.9;
+    }
+
+    .under-hero-box::after {
+      width: 360px;
+      height: 360px;
+      right: -140px;
+      top: -170px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(110, 191, 244, 0.24), transparent 64%);
+      filter: blur(8px);
+    }
+
+    .content-feature-grid,
+    .courses-section {
+      position: relative;
+      z-index: 1;
+    }
+    .content-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .content-feature {
+      min-height: 132px;
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 20px 24px;
+      border-right: 1px solid rgba(221, 244, 255, 0.48);
+      background:
+        radial-gradient(ellipse at 24% 14%, rgba(255, 255, 255, 0.34), transparent 36%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 64%);
+    }
+
+    .content-feature:last-child {
+      border-right: none;
+    }
+
+    .content-feature-logo {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: #1f6fae;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 24%, rgba(255, 255, 255, 0.95), transparent 34%),
+        rgba(219, 242, 255, 0.72);
+      border: 1px solid rgba(161, 217, 249, 0.34);
+      box-shadow: 0 10px 20px rgba(35, 91, 137, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.86);
+    }
+
+    .content-feature-logo svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2.1;
+    }
+
+    .content-feature h3 {
+      color: #082b55;
+      font-size: 15px;
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      font-weight: 800;
+    }
+
+    .content-feature p {
+      margin-top: 8px;
+      color: #647f99;
+      font-size: 13.5px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .courses-section {
+      margin-top: 22px;
+      padding-top: 22px;
+      scroll-margin-top: 110px;
+      border-top: 1px solid rgba(178, 226, 252, 0.34);
+    }
+
+    .courses-layout {
+      display: block;
+    }
+
+    .courses-copy {
+      min-width: 0;
+    }
+
+    .courses-header {
+      display: block;
+      margin-bottom: 16px;
+      padding: 0;
+    }
+
+    .courses-header h2 {
+      color: #082b55;
+      font-size: 24px;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+    }
+
+    .courses-header p {
+      max-width: 520px;
+      margin-top: 8px;
+      color: #647f99;
+      font-size: 14px;
+      line-height: 1.55;
+      font-weight: 500;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .course-card {
+      min-height: 170px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: stretch;
+      padding: 0;
+      border-radius: 18px;
+      border: 1px solid rgba(221, 244, 255, 0.6);
+      background:
+        radial-gradient(ellipse at 18% 0%, rgba(255, 255, 255, 0.82), transparent 34%),
+        radial-gradient(ellipse at 100% 12%, rgba(205, 239, 255, 0.42), transparent 38%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.58), rgba(229, 247, 255, 0.3)),
+        rgba(255, 255, 255, 0.34);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.82),
+        inset 0 -14px 30px rgba(65, 145, 205, 0.08),
+        0 12px 28px rgba(35, 91, 137, 0.08);
+      backdrop-filter: blur(18px) saturate(135%);
+      -webkit-backdrop-filter: blur(18px) saturate(135%);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      overflow: hidden;
+    }
+    .course-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 200, 153, 0.62);
+      box-shadow:
+        0 16px 34px rgba(35, 91, 137, 0.1),
+        0 10px 24px rgba(255, 126, 45, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+
+    .course-code {
+      width: fit-content;
+      padding: 7px 11px;
+      border-radius: 999px;
+      color: #1f6fae;
+      background:
+        radial-gradient(circle at 24% 16%, rgba(255, 255, 255, 0.92), transparent 34%),
+        rgba(226, 243, 255, 0.8);
+      border: 1px solid rgba(161, 217, 249, 0.38);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .course-card h3 {
+      margin-top: 10px;
+      color: #082b55;
+      font-size: 15px;
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      font-weight: 800;
+    }
+
+    .course-card p {
+      margin-top: 7px;
+      color: #647f99;
+      font-size: 12px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .course-link {
+      width: fit-content;
+      min-width: 0;
+      height: 29px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-start;
+      flex-shrink: 0;
+      margin-top: 11px;
+      padding: 0 10px;
+      border: none;
+      border-radius: 10px;
+      color: #ffffff;
+      text-decoration: none;
+      background: linear-gradient(135deg, #ffa45b, #ff7426);
+      box-shadow: 0 10px 20px rgba(255, 126, 45, 0.18);
+      font-family: inherit;
+      font-size: 10.5px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .course-link::after {
+      content: ">";
+      margin-left: 5px;
+      font-size: 14px;
+      line-height: 1;
+      transform: translateY(-0.5px);
+      transition: transform 0.2s ease;
+    }
+
+    .course-card.is-open .course-link::after {
+      transform: rotate(90deg) translateX(0.5px);
+    }
+
+    .course-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(255, 126, 45, 0.26);
+    }
+
+    .course-link svg {
+      display: none;
+    }
+
+    .course-card-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+      padding: 15px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .course-card-image {
+      min-height: 170px;
+      border-radius: 0 18px 18px 0;
+      border: none;
+      background:
+        linear-gradient(135deg, rgba(8, 43, 85, 0.04), rgba(255, 255, 255, 0.16)),
+        var(--course-light-image);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.86);
+      position: relative;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 100%);
+      mask-image: linear-gradient(to right, transparent 0%, #000 24%, #000 100%);
+    }
+
+    .course-card-image::before {
+      content: none;
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 28% 24%, rgba(255, 255, 255, 0.72), transparent 22%),
+        linear-gradient(145deg, transparent 0 48%, rgba(6, 38, 77, 0.12) 48% 49%, transparent 49%);
+    }
+
+
+    .course-card-image.ppl-image {
+      --course-light-image: var(--course-ppl-light-image);
+      --course-dark-image: var(--course-ppl-dark-image);
+    }
+
+    .course-card-image.ir-image {
+      --course-light-image: var(--course-ir-light-image);
+      --course-dark-image: var(--course-ir-dark-image);
+    }
+
+    .course-card-image.cpl-image {
+      --course-light-image: var(--course-cpl-light-image);
+      --course-dark-image: var(--course-cpl-dark-image);
+    }
+    .course-modules {
+      display: none;
+    }
+
+    .course-card.is-open {
+      border-color: rgba(255, 126, 45, 0.46);
+      background:
+        radial-gradient(ellipse at 18% 0%, rgba(255, 255, 255, 0.86), transparent 34%),
+        radial-gradient(ellipse at 90% 8%, rgba(255, 196, 139, 0.2), transparent 34%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.66), rgba(230, 247, 255, 0.36)),
+        rgba(255, 255, 255, 0.38);
+      box-shadow:
+        0 18px 38px rgba(255, 126, 45, 0.13),
+        0 16px 34px rgba(35, 91, 137, 0.09),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+
+    .course-card.is-open .course-link {
+      background: linear-gradient(135deg, #1f6fae, #4aaeea);
+      box-shadow: 0 12px 24px rgba(31, 111, 174, 0.22);
+    }
+
+    .course-module-panel {
+      display: none;
+      margin-top: 14px;
+      padding: 0 18px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(221, 244, 255, 0.64);
+      background:
+        radial-gradient(ellipse at 18% 0%, rgba(255, 255, 255, 0.74), transparent 30%),
+        radial-gradient(ellipse at 86% 0%, rgba(205, 239, 255, 0.42), transparent 36%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(229, 246, 255, 0.42)),
+        rgba(255, 255, 255, 0.42);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.86),
+        inset 0 -18px 36px rgba(65, 145, 205, 0.08),
+        0 18px 42px rgba(35, 91, 137, 0.10);
+      backdrop-filter: blur(20px) saturate(145%);
+      -webkit-backdrop-filter: blur(20px) saturate(145%);
+      overflow: hidden;
+    }
+    .course-module-panel.is-visible {
+      display: block;
+      border-color: rgba(255, 126, 45, 0.44);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.90),
+        inset 0 -18px 36px rgba(255, 126, 45, 0.10),
+        0 0 0 1px rgba(255, 126, 45, 0.16),
+        0 20px 46px rgba(255, 126, 45, 0.18),
+        0 18px 42px rgba(35, 91, 137, 0.10);
+    }
+
+    .course-module-panel .module-list {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+
+    .site-info-section {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: minmax(280px, 0.92fr) minmax(320px, 1.08fr);
+      gap: 24px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .site-info-image {
+      content-visibility: auto;
+      contain-intrinsic-size: 520px;
+      min-height: 0;
+      aspect-ratio: 1 / 1;
+      border-radius: 18px;
+      overflow: visible;
+      background: transparent;
+    }
+
+    .site-info-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    .site-info-copy {
+      padding: 2px 6px 8px;
+    }
+
+    .site-info-kicker {
+      width: fit-content;
+      padding: 7px 11px;
+      border-radius: 999px;
+      color: #1f6fae;
+      background:
+        radial-gradient(circle at 24% 14%, rgba(255, 255, 255, 0.92), transparent 34%),
+        rgba(226, 243, 255, 0.74);
+      border: 1px solid rgba(161, 217, 249, 0.38);
+      font-size: 10.5px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+
+    .site-info-copy h2 {
+      max-width: 560px;
+      margin-top: 14px;
+      color: #082b55;
+      font-size: clamp(28px, 3vw, 42px);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+    }
+
+    .site-info-copy p {
+      max-width: 580px;
+      margin-top: 14px;
+      color: #647f99;
+      font-size: 14.5px;
+      line-height: 1.65;
+      font-weight: 550;
+    }
+
+    .site-info-points {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .site-info-point {
+      min-height: 76px;
+      padding: 13px 14px;
+      border-radius: 15px;
+      border: 1px solid rgba(221, 244, 255, 0.5);
+      background:
+        radial-gradient(ellipse at 22% 0%, rgba(255, 255, 255, 0.62), transparent 38%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.38), rgba(226, 246, 255, 0.22));
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.78),
+        inset 0 -10px 20px rgba(109, 188, 239, 0.05),
+        0 10px 22px rgba(35, 91, 137, 0.06);
+    }
+
+    .site-info-point strong {
+      display: block;
+      color: #082b55;
+      font-size: 12.5px;
+      line-height: 1.2;
+      font-weight: 800;
+    }
+    .site-info-dashboard {
+      content-visibility: auto;
+      contain-intrinsic-size: 560px;
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: minmax(300px, 0.78fr) minmax(520px, 1.22fr);
+      align-items: start;
+      gap: 30px;
+      margin-top: 14px;
+      width: 100%;
+      max-width: none;
+      padding: 0;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      overflow: visible;
+    }
+
+    .site-info-dashboard-copy {
+      min-width: 0;
+      align-self: start;
+      padding: 16px 8px 0 0;
+    }
+
+    .site-info-dashboard-copy span {
+      display: block;
+      color: #ff7e2d;
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: 0.11em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .site-info-dashboard-copy strong {
+      display: block;
+      max-width: 440px;
+      margin-top: 10px;
+      color: #082b55;
+      font-size: clamp(24px, 2.4vw, 34px);
+      font-weight: 850;
+      line-height: 1.02;
+    }
+
+    .site-info-dashboard-copy p {
+      max-width: 440px;
+      margin-top: 12px;
+      color: #647f99;
+      font-size: 13.5px;
+      font-weight: 620;
+      line-height: 1.55;
+    }
+
+    .site-info-dashboard-copy ul {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      max-width: 520px;
+    }
+
+    .site-info-dashboard-copy li {
+      position: relative;
+      padding-left: 16px;
+      color: #42617d;
+      font-size: 11.5px;
+      font-weight: 750;
+      line-height: 1.35;
+    }
+
+    .site-info-dashboard-copy li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.48em;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #4aaeea, #ff8b3d);
+      box-shadow: 0 0 0 3px rgba(74, 174, 234, 0.12);
+    }
+
+    .site-info-dashboard img {
+      display: block;
+      width: 100%;
+      max-width: none;
+      height: auto;
+      justify-self: stretch;
+      align-self: start;
+      object-fit: contain;
+      object-position: center top;
+      filter: drop-shadow(0 22px 34px rgba(35, 91, 137, 0.12));
+    }
+
+    .site-info-quizzes {
+      grid-template-columns: minmax(540px, 1.18fr) minmax(300px, 0.82fr);
+      margin-top: 18px;
+      align-items: center;
+    }
+
+    .site-info-quizzes .site-info-dashboard-copy {
+      padding: 0 0 0 6px;
+    }
+
+    .site-info-quizzes img {
+      object-position: center top;
+    }
+    .site-info-point span {
+      display: block;
+      margin-top: 6px;
+      color: #647f99;
+      font-size: 11.5px;
+      line-height: 1.45;
+      font-weight: 600;
+    }
+    .module-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 -18px 16px;
+      padding: 14px 18px;
+      border-radius: 18px 18px 0 0;
+      border: 1px solid rgba(255, 208, 170, 0.38);
+      border-bottom-color: rgba(148, 62, 14, 0.20);
+      background:
+        radial-gradient(circle at 22% 14%, rgba(255, 235, 207, 0.42), transparent 32%),
+        linear-gradient(135deg, #ffa45b, #ff7426);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.26), 0 14px 28px rgba(255, 126, 45, 0.24);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .module-panel-header strong {
+      color: #fff8f2;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .module-count {
+      min-height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 11px;
+      border-radius: 999px;
+      color: #fff8f2;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 245, 235, 0.30);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      font-size: 10.5px;
+      line-height: 1;
+      font-weight: 850;
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+
+    .module-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .module-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 36px;
+      padding: 8px 10px;
+      border-radius: 13px;
+      background:
+        radial-gradient(ellipse at 18% 0%, rgba(255, 255, 255, 0.74), transparent 36%),
+        rgba(235, 248, 255, 0.48);
+      border: 1px solid rgba(178, 226, 252, 0.34);
+      color: #345879;
+      font-size: 10.5px;
+      line-height: 1.25;
+      font-weight: 750;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.70), 0 8px 18px rgba(35, 91, 137, 0.055);
+    }
+
+    .module-number {
+      width: 26px;
+      height: 26px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border-radius: 10px;
+      color: transparent;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(224, 244, 255, 0.84));
+      border: 1px solid rgba(100, 169, 222, 0.30);
+      box-shadow: 0 8px 18px rgba(35, 91, 137, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .module-icon {
+      width: 26px;
+      height: 26px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border-radius: 10px;
+      color: #1f6fae;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(224, 244, 255, 0.84));
+      border: 1px solid rgba(100, 169, 222, 0.30);
+      box-shadow: 0 8px 18px rgba(35, 91, 137, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    }
+
+    .module-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .module-number::before,
+    .module-number::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .module-number::before {
+      width: 15px;
+      height: 15px;
+      background: #1f6fae;
+      clip-path: polygon(50% 0, 61% 39%, 98% 54%, 61% 60%, 50% 100%, 39% 60%, 2% 54%, 39% 39%);
+      transform: translate(-50%, -50%) rotate(45deg);
+      transform-origin: center;
+      opacity: 0.95;
+    }
+
+    .module-number::after {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: #ff8b3d;
+      box-shadow: 0 0 0 3px rgba(255, 139, 61, 0.12);
+      transform: translate(-50%, -50%);
+    }
+
+    .module-item:nth-child(4n + 2) .module-number::before {
+      width: 16px;
+      height: 16px;
+      clip-path: polygon(50% 0, 58% 35%, 96% 35%, 64% 56%, 76% 96%, 50% 70%, 24% 96%, 36% 56%, 4% 35%, 42% 35%);
+      transform: translate(-50%, -50%);
+      background: #2f91cf;
+    }
+
+    .module-item:nth-child(4n + 3) .module-number::before {
+      width: 16px;
+      height: 16px;
+      clip-path: polygon(50% 0, 62% 36%, 100% 50%, 62% 64%, 50% 100%, 38% 64%, 0 50%, 38% 36%);
+      transform: translate(-50%, -50%) rotate(22deg);
+      background: #ff8b3d;
+    }
+
+    .module-item:nth-child(4n) .module-number::before {
+      width: 16px;
+      height: 16px;
+      clip-path: polygon(10% 45%, 50% 8%, 90% 45%, 74% 45%, 74% 88%, 26% 88%, 26% 45%);
+      transform: translate(-50%, -50%);
+      background: #2878b8;
+    }
+
+    .module-item:nth-child(4n) .module-number::after {
+      width: 9px;
+      height: 2px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: none;
+      transform: translate(-50%, 90%);
+    }
+
+    .site-footer {
+      width: min(1380px, calc(100% - 96px));
+      max-width: 1380px;
+      margin: 34px auto 42px;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid var(--sky-glass-border);
+      background:
+        radial-gradient(ellipse at 14% 0%, rgba(255, 255, 255, 0.9), transparent 32%),
+        radial-gradient(ellipse at 78% 10%, rgba(204, 239, 255, 0.46), transparent 38%),
+        radial-gradient(ellipse at 92% 100%, rgba(255, 164, 91, 0.1), transparent 34%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(229, 247, 255, 0.54));
+      color: #06264d;
+      box-shadow:
+        0 20px 52px rgba(35, 91, 137, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -18px 36px rgba(109, 188, 239, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .site-footer::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.62), transparent 34%),
+        radial-gradient(ellipse at 24% 12%, rgba(255, 255, 255, 0.42), transparent 24%),
+        radial-gradient(circle at 18% 0%, rgba(151, 213, 255, 0.24), transparent 34%);
+      opacity: 0.9;
+    }
+
+    .footer-main {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 28px;
+      padding: 30px 32px;
+    }
+
+    .footer-brand-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .footer-logo {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #0b3b70;
+      background:
+        radial-gradient(circle at 34% 24%, rgba(255, 255, 255, 0.98), transparent 34%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(218, 242, 255, 0.78));
+      border: 1px solid rgba(161, 217, 249, 0.42);
+      box-shadow: 0 8px 18px rgba(38, 99, 151, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+    }
+
+    .footer-brand-name {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1;
+    }
+
+    .footer-brand-tagline {
+      margin-top: 5px;
+      color: #6e879f;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+    }
+
+    .footer-description {
+      max-width: 390px;
+      color: #647f99;
+      font-size: 13.5px;
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    .footer-column h3 {
+      margin-bottom: 12px;
+      color: #082b55;
+      font-size: 13px;
+      line-height: 1;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .footer-column a {
+      display: block;
+      width: fit-content;
+      margin-top: 10px;
+      color: #647f99;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 600;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .footer-column a:hover {
+      color: #ffa45b;
+      transform: translateX(2px);
+    }
+
+    .footer-bottom {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 32px;
+      border-top: 1px solid rgba(178, 226, 252, 0.34);
+      color: #7b91a7;
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    .footer-bottom span:last-child {
+      color: #647f99;
+    }
+
+    .box-button {
+      height: 42px;
+      padding: 0 20px;
+      border: none;
+      border-radius: 14px;
+      color: white;
+      background:
+        radial-gradient(circle at 22% 14%, rgba(255, 235, 207, 0.42), transparent 32%),
+        linear-gradient(135deg, #ffa45b, #ff7426);
+      box-shadow: 0 14px 28px rgba(255, 126, 45, 0.24);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    body.dark-mode {
+      color: #cfe3f2;
+      background:
+        radial-gradient(circle at 8% 715px, rgba(31, 84, 124, 0.14) 0 10%, transparent 24%),
+        radial-gradient(circle at 88% 760px, rgba(255, 142, 69, 0.05) 0 5%, transparent 18%),
+        linear-gradient(180deg, #071726 0%, #081929 42%, #071726 100%);
+    }
+
+    body.dark-mode::before {
+      background:
+        linear-gradient(90deg, rgba(3, 15, 31, 0.64) 0%, rgba(5, 31, 58, 0.36) 43%, rgba(7, 23, 38, 0.20) 100%),
+        var(--hero-dark-image);
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+    }
+
+    body.dark-mode::after {
+      background: rgba(7, 23, 38, 0.72);
+      color: rgba(234, 246, 255, 0.56);
+      border: 1px solid rgba(148, 199, 238, 0.18);
+    }
+
+    body.dark-mode .under-hero-box {
+      background:
+        linear-gradient(135deg, rgba(14, 40, 65, 0.78), rgba(4, 18, 34, 0.62)),
+        rgba(6, 22, 38, 0.74);
+      border-color: rgba(184, 223, 255, 0.18);
+      box-shadow:
+        0 24px 58px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(210, 235, 250, 0.06),
+        inset 0 -24px 48px rgba(64, 151, 218, 0.08);
+    }
+
+    body.dark-mode .features-page .features-box {
+      background:
+        linear-gradient(132deg, rgba(15, 45, 73, 0.86), rgba(5, 21, 38, 0.74) 48%, rgba(34, 39, 48, 0.66) 100%),
+        repeating-linear-gradient(90deg, rgba(139, 203, 246, 0.07) 0 1px, transparent 1px 74px),
+        repeating-linear-gradient(0deg, rgba(139, 203, 246, 0.055) 0 1px, transparent 1px 74px),
+        repeating-linear-gradient(135deg, transparent 0 34px, rgba(255, 139, 61, 0.08) 34px 35px, transparent 35px 92px),
+        rgba(6, 22, 38, 0.78);
+    }
+
+    body.dark-mode .features-page .features-box::before {
+      background:
+        linear-gradient(115deg, rgba(184, 223, 255, 0.07), transparent 30%, rgba(67, 151, 218, 0.06) 58%, transparent 78%),
+        radial-gradient(ellipse at 86% 18%, rgba(148, 199, 238, 0.08), transparent 30%);
+      opacity: 0.9;
+    }
+
+
+    body.dark-mode .under-hero-box::before {
+      background:
+        linear-gradient(115deg, rgba(184, 223, 255, 0.07), transparent 30%, rgba(67, 151, 218, 0.06) 58%, transparent 78%),
+        radial-gradient(ellipse at 86% 18%, rgba(121, 195, 244, 0.08), transparent 32%);
+      mix-blend-mode: screen;
+      opacity: 0.42;
+    }
+
+    body.dark-mode .under-hero-box::after {
+      background: radial-gradient(circle, rgba(72, 159, 224, 0.10), transparent 64%);
+      opacity: 0.46;
+    }
+
+    body.dark-mode .topbar {
+      background: rgba(8, 28, 48, 0.82);
+      border-color: rgba(148, 199, 238, 0.20);
+      box-shadow: 0 20px 52px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(210, 235, 250, 0.05);
+    }
+    body.dark-mode .hero-kicker,
+    body.dark-mode .icon-btn,
+    body.dark-mode .login-btn,
+    body.dark-mode .hero-secondary-btn {
+      background: rgba(13, 39, 64, 0.68);
+      border-color: rgba(148, 199, 238, 0.20);
+      color: #c7ddeb;
+      box-shadow: inset 0 1px 0 rgba(210, 235, 250, 0.05), 0 12px 28px rgba(0, 0, 0, 0.18);
+    }
+
+    body.dark-mode .logo-mark {
+      background: linear-gradient(145deg, rgba(30, 72, 105, 0.92), rgba(11, 35, 60, 0.94));
+      border-color: rgba(148, 199, 238, 0.22);
+      color: #c8deec;
+      box-shadow: inset 0 1px 0 rgba(210, 235, 250, 0.06), 0 10px 24px rgba(0, 0, 0, 0.22);
+    }
+
+    body.dark-mode .brand-name,
+    body.dark-mode .hero-title,
+    body.dark-mode .content-feature h3,
+    body.dark-mode .courses-header h2,
+    body.dark-mode .course-card h3 {
+      color: #d4e8f5;
+    }
+
+    body.dark-mode .brand-tagline,
+    body.dark-mode .hero-subtext,
+    body.dark-mode .content-feature p,
+    body.dark-mode .courses-header p,
+    body.dark-mode .course-card p {
+      color: #8fa9bb;
+      text-shadow: none;
+    }
+
+    body.dark-mode .hero-title .tilted-word,
+    body.dark-mode .content-feature-logo,
+body.dark-mode .content-feature,
+    body.dark-mode .courses-section {
+      border-color: rgba(184, 223, 255, 0.16);
+    }
+
+    body.dark-mode .login-modal {
+      border-color: rgba(184, 223, 255, 0.20);
+      background:
+        radial-gradient(ellipse at 18% 0%, rgba(67, 151, 218, 0.16), transparent 34%),
+        radial-gradient(ellipse at 88% 12%, rgba(184, 223, 255, 0.08), transparent 36%),
+        linear-gradient(145deg, rgba(18, 48, 76, 0.78), rgba(6, 24, 42, 0.64)),
+        rgba(6, 22, 38, 0.54);
+      color: #cfe3f2;
+      box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.38),
+        inset 0 1px 0 rgba(210, 235, 250, 0.08);
+    }
+
+    body.dark-mode .login-modal h2,
+    body.dark-mode .login-field label {
+      color: #d4e8f5;
+    }
+
+    body.dark-mode .login-modal-subtitle,
+    body.dark-mode .login-signup {
+      color: #8fa9bb;
+    }
+
+    body.dark-mode .login-status {
+      color: #ffbf91;
+    }
+
+    body.dark-mode .login-input-wrap,
+    body.dark-mode .login-google-btn,
+    body.dark-mode .login-close {
+      border-color: rgba(184, 223, 255, 0.16);
+      background:
+        radial-gradient(ellipse at 18% 0%, rgba(184, 223, 255, 0.08), transparent 34%),
+        rgba(12, 35, 58, 0.72);
+      color: #d4e8f5;
+      box-shadow: inset 0 1px 0 rgba(210, 235, 250, 0.06);
+    }
+
+    body.dark-mode .login-input-wrap input {
+      color: #e3f1fa;
+    }
+
+    body.dark-mode .course-card {
+      background:
+        linear-gradient(145deg, rgba(12, 37, 62, 0.80), rgba(5, 20, 36, 0.66)),
+        rgba(8, 28, 48, 0.72);
+      border-color: rgba(184, 223, 255, 0.16);
+      box-shadow:
+        inset 0 1px 0 rgba(210, 235, 250, 0.05),
+        inset 0 -14px 30px rgba(87, 174, 236, 0.06),
+        0 14px 30px rgba(0, 0, 0, 0.20);
+    }
+
+    body.dark-mode .course-module-panel {
+      background:
+        linear-gradient(135deg, rgba(12, 37, 62, 0.82), rgba(5, 19, 34, 0.70)),
+        rgba(7, 25, 43, 0.76);
+      border-color: rgba(184, 223, 255, 0.16);
+      box-shadow:
+        inset 0 1px 0 rgba(210, 235, 250, 0.05),
+        inset 0 -18px 34px rgba(87, 174, 236, 0.06),
+        0 18px 40px rgba(0, 0, 0, 0.24);
+    }
+
+    body.dark-mode .course-module-panel.is-visible {
+      border-color: rgba(255, 144, 74, 0.38);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 220, 190, 0.08),
+        inset 0 -18px 36px rgba(255, 126, 45, 0.08),
+        0 0 0 1px rgba(255, 126, 45, 0.13),
+        0 20px 46px rgba(255, 126, 45, 0.16),
+        0 18px 42px rgba(0, 0, 0, 0.22);
+    }
+
+    body.dark-mode .course-card.is-open {
+      border-color: rgba(255, 164, 91, 0.42);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(210, 235, 250, 0.05);
+    }
+
+    body.dark-mode .module-item {
+      background: rgba(9, 30, 50, 0.74);
+      border-color: rgba(148, 199, 238, 0.14);
+      color: #aec8da;
+    }
+
+
+    body.dark-mode .site-info-image {
+      background: transparent;
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    body.dark-mode .site-info-dashboard img {
+      filter: brightness(0.90) saturate(0.95) drop-shadow(0 24px 34px rgba(0, 0, 0, 0.22));
+    }
+
+    body.dark-mode .features-page .site-info-image img,
+    body.dark-mode .features-page .site-info-dashboard img {
+      filter: brightness(0.94) saturate(0.96);
+    }
+
+    body.dark-mode .site-info-dashboard-copy strong {
+      color: #d4e8f5;
+    }
+
+    body.dark-mode .site-info-dashboard-copy p,
+    body.dark-mode .site-info-dashboard-copy li {
+      color: #8fa9bb;
+    }
+
+    body.dark-mode .site-info-kicker {
+      color: #86c6ec;
+      background: rgba(25, 78, 118, 0.42);
+      border-color: rgba(148, 199, 238, 0.18);
+    }
+
+    body.dark-mode .site-info-copy h2,
+    body.dark-mode .site-info-point strong {
+      color: #d4e8f5;
+    }
+
+    body.dark-mode .site-info-copy p,
+    body.dark-mode .site-info-point span {
+      color: #8fa9bb;
+    }
+
+    body.dark-mode .site-info-point {
+      border-color: rgba(184, 223, 255, 0.14);
+      background: rgba(9, 30, 50, 0.60);
+      box-shadow: inset 0 1px 0 rgba(210, 235, 250, 0.05), 0 10px 24px rgba(0, 0, 0, 0.18);
+    }
+    body.dark-mode .module-panel-header {
+      border-color: rgba(148, 199, 238, 0.18);
+      border-bottom-color: rgba(148, 199, 238, 0.10);
+      background:
+        linear-gradient(135deg, #d95f1c, #a84311);
+      box-shadow: inset 0 1px 0 rgba(210, 235, 250, 0.06), 0 12px 24px rgba(0, 0, 0, 0.18);
+    }
+body.dark-mode .module-panel-header strong {
+      color: #fff8f2;
+    }
+
+    body.dark-mode .module-count {
+      color: #fff8f2;
+      background: rgba(255, 255, 255, 0.13);
+      border-color: rgba(255, 245, 235, 0.22);
+      box-shadow: inset 0 1px 0 rgba(210, 235, 250, 0.06);
+    }
+
+    body.dark-mode .course-code {
+      color: #86c6ec;
+      background: rgba(25, 78, 118, 0.42);
+      border-color: rgba(148, 199, 238, 0.20);
+    }
+
+    body.dark-mode .course-card-image {
+      background:
+        linear-gradient(135deg, rgba(0, 0, 0, 0.34), rgba(10, 28, 46, 0.10)),
+        var(--course-dark-image);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    body.dark-mode .site-footer {
+      background: rgba(8, 28, 48, 0.82);
+      border-color: rgba(148, 199, 238, 0.20);
+      color: #cfe3f2;
+      box-shadow: 0 20px 52px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(210, 235, 250, 0.05);
+    }
+
+    body.dark-mode .site-footer::before {
+      background:
+        linear-gradient(135deg, rgba(210, 235, 250, 0.05), transparent 34%),
+        radial-gradient(circle at 18% 0%, rgba(142, 216, 255, 0.14), transparent 34%);
+    }
+
+    body.dark-mode .footer-logo {
+      background: linear-gradient(145deg, rgba(30, 72, 105, 0.92), rgba(11, 35, 60, 0.94));
+      border-color: rgba(148, 199, 238, 0.22);
+      color: #c8deec;
+      box-shadow: inset 0 1px 0 rgba(210, 235, 250, 0.06), 0 10px 24px rgba(0, 0, 0, 0.22);
+    }
+
+    body.dark-mode .footer-brand-name,
+    body.dark-mode .footer-column h3 {
+      color: #d4e8f5;
+    }
+
+    body.dark-mode .footer-brand-tagline,
+    body.dark-mode .footer-description,
+    body.dark-mode .footer-column a,
+    body.dark-mode .footer-bottom,
+    body.dark-mode .footer-bottom span:last-child {
+      color: #8fa9bb;
+    }
+
+    body.dark-mode .footer-bottom {
+      border-color: rgba(184, 223, 255, 0.16);
+    }
+
+    body.dark-mode .course-card-image::before {
+      background:
+        radial-gradient(circle at 28% 24%, rgba(98, 171, 224, 0.08), transparent 22%),
+        linear-gradient(145deg, transparent 0 48%, rgba(210, 235, 250, 0.05) 48% 49%, transparent 49%);
+    }
+    body {
+      transition: background 520ms ease, color 320ms ease;
+    }
+
+    .topbar-wrap,
+    .hero-card,
+    .under-hero-box,
+    .site-info-section,
+    .footer {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    body.is-ready .topbar-wrap,
+    body.is-ready .hero-card,
+    body.is-ready .under-hero-box,
+    body.is-ready .site-info-section,
+    body.is-ready .footer {
+      animation: aeroRise 780ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    body.is-ready .hero-card { animation-delay: 80ms; }
+    body.is-ready .under-hero-box { animation-delay: 180ms; }
+    body.is-ready .site-info-section { animation-delay: 280ms; }
+    body.is-ready .footer { animation-delay: 340ms; }
+
+    body.is-ready .hero-kicker,
+    body.is-ready .hero-title,
+    body.is-ready .hero-subtext,
+    body.is-ready .hero-actions {
+      animation: aeroSoftIn 680ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    body.is-ready .hero-title { animation-delay: 110ms; }
+    body.is-ready .hero-subtext { animation-delay: 180ms; }
+    body.is-ready .hero-actions { animation-delay: 250ms; }
+
+    body.is-ready .course-card {
+      animation: aeroCardIn 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    body.is-ready .course-card:nth-child(1) { animation-delay: 260ms; }
+    body.is-ready .course-card:nth-child(2) { animation-delay: 330ms; }
+    body.is-ready .course-card:nth-child(3) { animation-delay: 400ms; }
+
+    body.is-ready .site-info-image img {
+      animation: aeroFloat 6.5s ease-in-out 900ms infinite;
+      transform-origin: 50% 56%;
+      will-change: transform;
+    }
+
+    .topbar,
+    .topbar-wrap,
+    .logo-mark,
+    .brand,
+    .brand-tagline,
+    .nav-links,
+    .nav-links a,
+    .nav-actions,
+    .hero-card,
+    .under-hero-box,
+    .course-card,
+    .course-module-panel,
+    .site-info-point,
+    .hero-primary-btn,
+    .hero-secondary-btn,
+    .course-link,
+    .icon-btn,
+    .login-btn,
+    .start-btn {
+      transition:
+        transform 220ms ease,
+        width 280ms cubic-bezier(0.16, 1, 0.3, 1),
+        height 280ms cubic-bezier(0.16, 1, 0.3, 1),
+        padding 280ms cubic-bezier(0.16, 1, 0.3, 1),
+        padding-top 280ms cubic-bezier(0.16, 1, 0.3, 1),
+        gap 240ms ease,
+        border-radius 280ms ease,
+        max-height 240ms ease,
+        margin-top 240ms ease,
+        box-shadow 260ms ease,
+        border-color 260ms ease,
+        background 360ms ease,
+        color 260ms ease,
+        opacity 260ms ease;
+    }
+
+    .course-card-image {
+      transition: transform 520ms cubic-bezier(0.16, 1, 0.3, 1), filter 360ms ease, background 420ms ease;
+    }
+
+    .course-card:hover .course-card-image {
+      transform: scale(1.035);
+    }
+
+    .course-card.is-open {
+      transform: translateY(-3px);
+    }
+
+    .course-module-panel.is-visible {
+      animation: aeroPanelOpen 360ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .course-module-panel.is-visible .module-item {
+      animation: aeroModuleItem 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .course-module-panel.is-visible .module-item:nth-child(2) { animation-delay: 24ms; }
+    .course-module-panel.is-visible .module-item:nth-child(3) { animation-delay: 48ms; }
+    .course-module-panel.is-visible .module-item:nth-child(4) { animation-delay: 72ms; }
+    .course-module-panel.is-visible .module-item:nth-child(5) { animation-delay: 96ms; }
+    .course-module-panel.is-visible .module-item:nth-child(6) { animation-delay: 120ms; }
+    .course-module-panel.is-visible .module-item:nth-child(7) { animation-delay: 144ms; }
+    .course-module-panel.is-visible .module-item:nth-child(8) { animation-delay: 168ms; }
+    .course-module-panel.is-visible .module-item:nth-child(9) { animation-delay: 192ms; }
+    .course-module-panel.is-visible .module-item:nth-child(10) { animation-delay: 216ms; }
+
+    body.theme-pulse::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 24px, rgba(118, 194, 238, 0.24), transparent 34%);
+      animation: aeroThemePulse 540ms ease both;
+    }
+
+
+    .hero-primary-btn,
+    .hero-secondary-btn,
+    .hero-sample-btn,
+    .start-btn,
+    .course-link {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-primary-btn::before,
+    .hero-secondary-btn::before,
+    .hero-sample-btn::before,
+    .start-btn::before,
+    .course-link::before {
+      content: "";
+      position: absolute;
+      inset: -35% auto -35% -70%;
+      width: 48%;
+      transform: skewX(-18deg);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.46), transparent);
+      opacity: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-primary-btn:hover::before,
+    .hero-secondary-btn:hover::before,
+    .hero-sample-btn:hover::before,
+    .start-btn:hover::before,
+    .course-link:hover::before {
+      animation: aeroButtonSheen 760ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .motion-reveal {
+      opacity: 0;
+      transform: translateY(18px) scale(0.985);
+      transition: opacity 680ms cubic-bezier(0.16, 1, 0.3, 1), transform 680ms cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: var(--reveal-delay, 0ms);
+      will-change: opacity, transform;
+    }
+
+    .motion-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      will-change: auto;
+    }
+
+    .module-item {
+      transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
+    }
+
+    .module-item:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 126, 45, 0.28);
+      box-shadow: 0 12px 24px rgba(35, 91, 137, 0.08);
+    }
+
+    .site-info-image img,
+    .site-info-dashboard img {
+      transition: transform 720ms cubic-bezier(0.16, 1, 0.3, 1), filter 420ms ease;
+    }
+
+    .site-info-image:hover img,
+    .site-info-dashboard:hover img {
+      transform: translateY(-5px) scale(1.015);
+    }
+
+    @keyframes aeroButtonSheen {
+      0% { opacity: 0; transform: translateX(0) skewX(-18deg); }
+      18% { opacity: 1; }
+      100% { opacity: 0; transform: translateX(360%) skewX(-18deg); }
+    }
+    @keyframes aeroRise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes aeroSoftIn {
+      from { opacity: 0; transform: translateY(14px) scale(0.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes aeroCardIn {
+      from { opacity: 0; transform: translateY(16px) scale(0.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes aeroPanelOpen {
+      from { opacity: 0; transform: translateY(-8px) scale(0.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes aeroModuleItem {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes aeroFloat {
+      0%, 100% { transform: translateY(0) rotate(-0.2deg); }
+      50% { transform: translateY(-8px) rotate(0.25deg); }
+    }
+
+    @keyframes aeroThemePulse {
+      from { opacity: 0; transform: scale(0.92); }
+      35% { opacity: 1; }
+      to { opacity: 0; transform: scale(1.18); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 1ms !important;
+      }
+
+      .topbar-wrap,
+      .hero-card,
+      .under-hero-box,
+      .site-info-section,
+      .footer {
+        opacity: 1;
+        transform: none;
+      }
+    }
+@media (max-width: 900px) {
+      .topbar {
+        grid-template-columns: auto auto;
+        height: auto;
+        padding: 16px 18px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .brand {
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar {
+        width: calc(100% - 34px);
+      }
+
+      .topbar-wrap.is-minimized .topbar {
+        width: calc(100% - 34px);
+      }
+
+      body::before {
+        height: 590px;
+        min-height: 590px;
+      }
+
+      body::after {
+        top: 528px;
+        right: 18px;
+      display: none;
+      }
+    .hero-section {
+        width: 100%;
+        margin-top: 0;
+        padding-top: 70px;
+      }
+
+      .hero-card {
+        width: calc(100% - 18px);
+        min-height: 420px;
+        border-radius: 0;
+      }
+
+      .hero-content {
+        padding: 46px 28px;
+        transform: translateY(-24px);
+      }
+
+      .hero-title {
+        font-size: clamp(46px, 15vw, 68px);
+      }
+
+      .under-hero-box {
+        width: calc(100% - 34px);
+        margin: -28px auto 0;
+        padding: 18px;
+      }
+      .content-feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .content-feature {
+        min-height: auto;
+        border-right: none;
+        border-bottom: 1px solid rgba(131, 185, 228, 0.24);
+        padding: 18px 4px;
+      }
+
+      .content-feature:last-child {
+        border-bottom: none;
+      }
+
+      .courses-layout {
+        display: block;
+      }
+
+      .courses-header {
+        padding: 0;
+      }
+
+      .courses-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .module-list,
+      .course-module-panel .module-list {
+        grid-template-columns: 1fr;
+      }
+
+      .course-card {
+        min-height: auto;
+        grid-template-columns: 1fr;
+      }
+
+      .course-card-image {
+        min-height: 180px;
+        border-radius: 0 0 18px 18px;
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 24%, #000 100%);
+        mask-image: linear-gradient(to bottom, transparent 0%, #000 24%, #000 100%);
+      }
+
+
+      .site-info-section {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .site-info-image {
+        content-visibility: auto;
+        contain-intrinsic-size: 520px;
+        min-height: 0;
+        aspect-ratio: 1 / 1;
+        border-radius: 18px;
+        overflow: visible;
+        background: transparent;
+      }
+      .site-info-copy {
+        padding: 0;
+      }
+
+      .site-info-points {
+        grid-template-columns: 1fr;
+      }
+
+      .site-info-dashboard {
+        grid-column: auto;
+        grid-template-columns: 1fr;
+        gap: 6px;
+        margin-top: 20px;
+        width: 100%;
+        padding: 0;
+      }
+
+      .site-info-quizzes {
+        grid-template-columns: 1fr;
+      }
+
+      .site-info-quizzes .site-info-dashboard-copy {
+        padding: 0;
+      }
+
+      .site-info-dashboard-copy {
+        padding: 0;
+      }
+
+      .features-page {
+        padding-top: 86px;
+      }
+
+      .features-page .features-box {
+        width: calc(100% - 34px);
+        margin-top: 0;
+        padding: 22px 18px 26px;
+      }
+
+      .features-page .site-info-section {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "intro"
+          "dashboard"
+          "quizzes";
+        gap: 30px;
+      }
+
+      .features-page .features-intro {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .features-page .site-info-copy {
+        justify-self: stretch;
+        transform: none;
+      }
+
+      .features-page .site-info-copy h2 {
+        font-size: clamp(40px, 12vw, 58px);
+      }
+
+      .features-page .site-info-points {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .features-page .site-info-point {
+        min-height: 0;
+      }
+
+      .features-page .site-info-image {
+        width: 100%;
+        margin: 0;
+        transform: none;
+        justify-self: stretch;
+      }
+
+      .features-page .site-info-image img {
+        width: 100%;
+        max-height: none;
+        margin-left: 0;
+      }
+
+      .features-page .site-info-dashboard,
+      .features-page .site-info-quizzes {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .features-page .site-info-dashboard:not(.site-info-quizzes) {
+        margin-top: 0;
+      }
+
+      .features-page .site-info-dashboard-copy ul {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .login-modal .login-form-panel {
+      align-items: stretch;
+    }
+
+    .login-modal .login-brand-row {
+      align-self: flex-start;
+      margin-bottom: clamp(28px, 4vh, 42px);
+    }
+
+    .login-modal h2 {
+      max-width: 390px;
+      text-align: left;
+      font-size: clamp(34px, 3.2vw, 46px);
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+    }
+
+    .login-modal .login-modal-subtitle {
+      max-width: 360px;
+      margin: 14px 0 30px;
+      text-align: left;
+      font-size: 15px;
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    .login-modal .login-form {
+      max-width: 390px;
+      gap: 14px;
+    }
+
+    .login-modal .login-input-wrap,
+    .login-modal .login-submit,
+    .login-modal .login-google-btn {
+      height: 54px;
+      border-radius: 16px;
+    }
+
+    .login-modal .login-input-wrap,
+    .login-modal .login-google-btn {
+      background: #ffffff;
+      border-color: #d8dee7;
+    }
+
+    .login-modal .login-signup {
+      max-width: 390px;
+      text-align: left;
+    }
+
+    .login-modal .login-close,
+    .login-modal .login-brand-mark,
+    .login-modal .login-input-wrap,
+    .login-modal .password-toggle,
+    .login-modal .login-submit,
+    .login-modal .login-google-btn,
+    .login-modal .google-mark,
+    .login-modal .login-visual-kicker,
+    .login-modal .login-feature-row,
+    .login-modal .login-feature-icon {
+      border-radius: 7px;
+    }
+
+    .learning-modal,
+    .learning-modal::before,
+    .learning-close,
+    .learning-option,
+    .learning-cancel,
+    .learning-continue,
+    .instruction-back,
+    .instruction-start,
+    .learning-state-message,
+    .instruction-box,
+    .next-box,
+    .selected-course-box,
+    .next-step,
+    .learning-modal-eyebrow {
+      border-radius: 7px;
+    }
+
+    @media (min-width: 961px) {
+      .login-modal {
+        transform: translateY(18px) scale(0.78);
+      }
+
+      .login-modal-overlay.is-open .login-modal {
+        transform: translateY(0) scale(0.8);
+      }
+    }
+
+    .login-close {
+      z-index: 4;
+    }
+
+    body.dark-mode .login-modal-overlay::before {
+      background: var(--login-image);
+    }
+
+    body.dark-mode .login-modal {
+      border-color: rgba(237, 249, 255, 0.64);
+      background:
+        linear-gradient(145deg, rgba(250, 254, 255, 0.82), rgba(226, 244, 255, 0.56)),
+        rgba(248, 253, 255, 0.56);
+      color: #0b315f;
+      box-shadow:
+        0 34px 86px rgba(2, 18, 34, 0.34),
+        0 12px 32px rgba(255, 126, 45, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.88);
+    }
+
+    body.dark-mode .login-form-panel {
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.9), transparent 34%),
+        radial-gradient(ellipse at 84% 18%, rgba(210, 240, 255, 0.5), transparent 40%),
+        linear-gradient(150deg, rgba(255, 255, 255, 0.84), rgba(239, 250, 255, 0.64));
+    }
+
+    body.dark-mode .login-modal h2,
+    body.dark-mode .login-field label,
+    body.dark-mode .login-brand-copy strong {
+      color: #082b55;
+    }
+
+    body.dark-mode .login-brand-copy span,
+    body.dark-mode .login-modal-subtitle,
+    body.dark-mode .login-signup {
+      color: #5e7892;
+    }
+
+    body.dark-mode .login-input-wrap,
+    body.dark-mode .login-google-btn,
+    body.dark-mode .login-close {
+      border-color: rgba(118, 171, 214, 0.22);
+      background:
+        radial-gradient(ellipse at 16% 0%, rgba(255, 255, 255, 0.86), transparent 36%),
+        rgba(248, 253, 255, 0.82);
+      color: #14345d;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.92),
+        0 12px 26px rgba(35, 91, 137, 0.06);
+    }
+
+    body.dark-mode .login-input-wrap input {
+      color: #092a52;
+    }
+
+    @media (max-width: 960px) {
+      .login-modal-overlay {
+        padding-top: 80px;
+      }
+
+      .login-modal {
+        grid-template-columns: 1fr;
+        width: min(560px, calc(100vw - 32px));
+        min-height: 0;
+        max-height: calc(100dvh - 104px);
+        overflow-y: auto;
+      }
+
+      .login-form-panel {
+        padding: clamp(30px, 7vw, 46px);
+      }
+
+      .login-form,
+      .login-signup {
+        max-width: none;
+      }
+
+      .login-visual-panel {
+        min-height: 260px;
+        padding: 26px;
+        background-position: center 32%;
+      }
+
+      .login-visual-panel h3 {
+        max-width: 430px;
+        margin-bottom: 18px;
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .topbar-wrap {
+        width: 100%;
+        margin-top: 0;
+        padding: 9px 0 0;
+      }
+
+      .topbar {
+        border-radius: 20px;
+      }
+
+      .brand-name {
+        font-size: 15px;
+      }
+
+      .brand-tagline {
+        font-size: 9px;
+      }
+
+      .login-btn,
+      .start-btn,
+      .nav-actions .icon-btn:nth-child(2) {
+        display: none;
+      }
+
+      .login-modal-overlay {
+        padding: 70px 14px 18px;
+      }
+
+      .login-modal {
+        width: min(100%, calc(100vw - 28px));
+        max-height: calc(100dvh - 88px);
+        padding: 0;
+        border-radius: 7px;
+      }
+
+      .login-modal h2 {
+        font-size: 34px;
+      }
+
+      .login-modal-subtitle {
+        margin-bottom: 24px;
+      }
+
+      .login-form-panel {
+        padding: 30px 20px 22px;
+      }
+
+      .login-brand-row {
+        margin-bottom: 26px;
+      }
+
+      .login-input-wrap,
+      .login-submit,
+      .login-google-btn {
+        height: 52px;
+      }
+
+      .login-visual-panel {
+        display: none;
+      }
+
+      .learning-modal-overlay {
+        padding: 14px 12px;
+      }
+
+      .learning-modal {
+        width: min(100%, calc(100vw - 24px));
+        max-height: calc(100dvh - 28px);
+        padding: 30px 16px 18px;
+      }
+
+      .learning-option {
+        grid-template-columns: 48px 1fr auto;
+        min-height: 92px;
+        padding: 12px;
+      }
+
+      .learning-option-icon {
+        width: 48px;
+        height: 48px;
+      }
+
+      .learning-option-icon svg {
+        width: 25px;
+        height: 25px;
+      }
+
+      .next-steps,
+      .learning-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .next-step {
+        min-height: auto;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar-wrap">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo-mark">P</div>
+        <div>
+          <div class="brand-name">PreFlight</div>
+          <div class="brand-tagline">LEARN HIGHER</div>
+        </div>
+      </div>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-3.5-3.5"></path>
+          </svg>
+        </button>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle theme">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 7 7 0 1 0 20.5 14.5Z"></path>
+          </svg>
+        </button>
+        <button class="login-btn">Log In</button>
+        <button class="start-btn" type="button">Start Learning</button>
+      </div>
+    </header>
+  </div>
+
+  <section class="hero-section" id="home">
+    <div class="hero-card">
+      <div class="hero-image-placeholder" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="hero-kicker">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path d="M12 3 19 6v5c0 4.7-2.9 8.1-7 10-4.1-1.9-7-5.3-7-10V6l7-3Z"></path>
+            <path d="M8.5 12h7"></path>
+            <path d="M12 8.5v7"></path>
+          </svg>
+          Pilot Learning Platform
+        </div>
+        <h1 class="hero-title">Aviation Education built for <span class="tilted-word">pilots.</span></h1>
+        <p class="hero-subtext">Master essential aviation knowledge with book-led courses, interactive lessons, and real-world scenarios.</p>
+        <div class="hero-actions">
+          <button class="hero-primary-btn" type="button">Start Learning &gt;</button>
+          <button class="hero-secondary-btn" type="button">Explore Courses</button>
+          <button class="hero-sample-btn">Sample test</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="under-hero-box">
+      <div class="content-feature-grid">
+        <article class="content-feature">
+          <div class="content-feature-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"></path>
+              <path d="M8 7h8"></path>
+              <path d="M8 11h6"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Official Book-based Content:</h3>
+            <p>Study with aviation content guided by official learning references.</p>
+          </div>
+        </article>
+
+        <article class="content-feature">
+          <div class="content-feature-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M5 6h14"></path>
+              <path d="M5 12h14"></path>
+              <path d="M5 18h14"></path>
+              <circle cx="5" cy="6" r="1.5"></circle>
+              <circle cx="5" cy="12" r="1.5"></circle>
+              <circle cx="5" cy="18" r="1.5"></circle>
+            </svg>
+          </div>
+          <div>
+            <h3>Structured Learning:</h3>
+            <p>Move through lessons in a clear, focused, step-by-step path.</p>
+          </div>
+        </article>
+
+        <article class="content-feature">
+          <div class="content-feature-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M16 11a4 4 0 1 0-8 0"></path>
+              <path d="M3.5 20a7.5 7.5 0 0 1 17 0"></path>
+              <path d="M18 4l1 2 2 .3-1.5 1.5.4 2.2L18 9l-1.9 1 .4-2.2L15 6.3l2-.3 1-2Z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Socialize &amp; Compete:</h3>
+            <p>Stay motivated with friends, rankings, and shared progress goals.</p>
+          </div>
+        </article>
+
+        <article class="content-feature">
+          <div class="content-feature-logo" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M4 19V5"></path>
+              <path d="M4 19h16"></path>
+              <path d="m7 15 3-3 3 2 5-7"></path>
+              <path d="M18 7h-4"></path>
+              <path d="M18 7v4"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Track Progress:</h3>
+            <p>Monitor accuracy, streaks, completed lessons, and weak areas.</p>
+          </div>
+        </article>
+      </div>
+
+      <section class="courses-section" id="courses" aria-label="Courses">
+        <div class="courses-layout">
+          <div class="courses-copy">
+            <div class="courses-header">
+              <h2>Courses</h2>
+              <p>Start with beginner-friendly aviation foundations, then move into advanced license-focused learning paths.</p>
+            </div>
+
+            <div class="courses-grid">
+              <article class="course-card">
+                <div class="course-card-copy">
+                  <div>
+                    <span class="course-code">PPL</span>
+                    <h3>Private Pilot License</h3>
+                    <p>Learn flight basics, navigation, and aviation rules.</p>
+                  </div>
+                  <button class="course-link" type="button" aria-label="View PPL modules" aria-expanded="false">View modules</button>
+                </div>
+                <div class="course-card-image ppl-image" aria-hidden="true"></div>
+                <div class="course-modules" aria-hidden="true">
+                  <div class="module-panel-header">
+                    <strong>PPL Modules</strong>
+                    <span class="module-count">8 modules</span>
+                  </div>
+                  <div class="module-list">
+                    <div class="module-item">
+                      <span class="module-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                          <path d="M12 3v18"></path>
+                          <path d="M5 6h14"></path>
+                          <path d="m6 6-3 7h6L6 6Z"></path>
+                          <path d="m18 6-3 7h6l-3-7Z"></path>
+                          <path d="M7 21h10"></path>
+                        </svg>
+                      </span>
+                      Air Law / Operational Procedures
+                    </div>
+                    <div class="module-item">
+                      <span class="module-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                          <path d="M16 16 22 8 2 12l8 3 3 7 3-6Z"></path>
+                          <path d="m10 15 12-7"></path>
+                        </svg>
+                      </span>
+                      Aircraft General Knowledge
+                    </div>
+                    <div class="module-item">
+                      <span class="module-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                          <path d="M3 8h12a3 3 0 1 0-3-3"></path>
+                          <path d="M3 12h16a3 3 0 1 1-3 3"></path>
+                          <path d="M3 16h9"></path>
+                        </svg>
+                      </span>
+                      Principles of Flight
+                    </div>
+                    <div class="module-item">
+                      <span class="module-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                          <path d="M12 4v2"></path>
+                          <path d="m5.6 6.6 1.4 1.4"></path>
+                          <path d="M3 13h2"></path>
+                          <path d="M17 7.8A5 5 0 0 0 8.2 12"></path>
+                          <path d="M7 19h10a4 4 0 0 0 .4-8 5.6 5.6 0 0 0-10.8 1.5A3.2 3.2 0 0 0 7 19Z"></path>
+                        </svg>
+                      </span>
+                      Meteorology
+                    </div>
+                    <div class="module-item">
+                      <span class="module-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="9"></circle>
+                          <path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"></path>
+                          <path d="M12 3v2"></path>
+                          <path d="M12 19v2"></path>
+                          <path d="M3 12h2"></path>
+                          <path d="M19 12h2"></path>
+                        </svg>
+                      </span>
+                      Navigation
+                    </div>
+                    <div class="module-item">
+                      <span class="module-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                          <path d="M4 14a8 8 0 0 1 16 0"></path>
+                          <path d="M6.5 19h11"></path>
+                          <path d="M12 14l4-4"></path>
+                          <path d="M8 14h.01"></path>
+                          <path d="M16 14h.01"></path>
+                        </svg>
+                      </span>
+                      Flight Performance &amp; Planning
+                    </div>
+                    <div class="module-item">
+                      <span class="module-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                          <path d="M8 6a4 4 0 0 1 7.6-1.8A4 4 0 0 1 19 8a4 4 0 0 1-1.2 2.8A4 4 0 0 1 16 19h-2"></path>
+                          <path d="M8 6a4 4 0 0 0-3 6.7A4 4 0 0 0 8 20h3"></path>
+                          <path d="M12 5v16"></path>
+                          <path d="M8 11h4"></path>
+                          <path d="M12 15h4"></path>
+                        </svg>
+                      </span>
+                      Human Performance
+                    </div>
+                    <div class="module-item">
+                      <span class="module-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                          <rect x="5" y="8" width="14" height="11" rx="2"></rect>
+                          <path d="M8 8V5h8v3"></path>
+                          <path d="M9 13h6"></path>
+                          <path d="M9 16h3"></path>
+                          <path d="M17 13h.01"></path>
+                          <path d="M17 16h.01"></path>
+                        </svg>
+                      </span>
+                      Communications
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="course-card">
+                <div class="course-card-copy">
+                  <div>
+                    <span class="course-code">IR</span>
+                    <h3>Instrument Rating</h3>
+                    <p>Practice instrument procedures and weather decisions.</p>
+                  </div>
+                  <button class="course-link" type="button" aria-label="View IR modules" aria-expanded="false">View modules</button>
+                </div>
+                <div class="course-card-image ir-image" aria-hidden="true"></div>
+                <div class="course-modules" aria-hidden="true">
+                  <div class="module-panel-header">
+                    <strong>IR Modules</strong>
+                    <span class="module-count">Sample modules</span>
+                  </div>
+                  <div class="module-list">
+                    <div class="module-item"><span class="module-number">1</span>Instrument Scan</div>
+                    <div class="module-item"><span class="module-number">2</span>IFR Procedures</div>
+                    <div class="module-item"><span class="module-number">3</span>Weather Minimums</div>
+                    <div class="module-item"><span class="module-number">4</span>Approach Briefing</div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="course-card">
+                <div class="course-card-copy">
+                  <div>
+                    <span class="course-code">CPL</span>
+                    <h3>Commercial Pilot License</h3>
+                    <p>Advance into operations, performance, and pilot theory.</p>
+                  </div>
+                  <button class="course-link" type="button" aria-label="View CPL modules" aria-expanded="false">View modules</button>
+                </div>
+                <div class="course-card-image cpl-image" aria-hidden="true"></div>
+                <div class="course-modules" aria-hidden="true">
+                  <div class="module-panel-header">
+                    <strong>CPL Modules</strong>
+                    <span class="module-count">Sample modules</span>
+                  </div>
+                  <div class="module-list">
+                    <div class="module-item"><span class="module-number">1</span>Flight Performance</div>
+                    <div class="module-item"><span class="module-number">2</span>Advanced Operations</div>
+                    <div class="module-item"><span class="module-number">3</span>Commercial Rules</div>
+                    <div class="module-item"><span class="module-number">4</span>Decision Making</div>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="course-module-panel" id="courseModulePanel" aria-hidden="true" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="features-page" id="features">
+    <div class="under-hero-box features-box">
+      <section class="site-info-section" aria-label="Platform features">
+        <div class="features-intro">
+          <div class="site-info-copy">
+            <span class="site-info-kicker">Platform Features</span>
+            <h2>Everything a student pilot needs to study with structure.</h2>
+            <p>PreFlight brings your aviation learning into one focused space: book-led lessons, guided modules, progress tracking, and social motivation that keeps study moving without feeling scattered.</p>
+            <div class="site-info-points">
+              <div class="site-info-point">
+                <strong>Book-led lessons</strong>
+                <span>Study from organized aviation references with clear module paths.</span>
+              </div>
+              <div class="site-info-point">
+                <strong>Progress tracking</strong>
+                <span>See completed lessons, accuracy, streaks, and weak areas.</span>
+              </div>
+              <div class="site-info-point">
+                <strong>Quiz practice</strong>
+                <span>Review topics through focused checks before moving ahead.</span>
+              </div>
+              <div class="site-info-point">
+                <strong>Social motivation</strong>
+                <span>Learn with friends, compare progress, and stay consistent.</span>
+              </div>
+            </div>
+          </div>
+          <div class="site-info-image">
+            <img src="platform-preview.png" width="1587" height="2245" alt="PreFlight platform dashboard, quiz, and friends previews" loading="lazy" decoding="async" />
+          </div>
+        </div>
+        <div class="site-info-dashboard">
+              <div class="site-info-dashboard-copy">
+                <span>Student Dashboard</span>
+                <strong>Know exactly what to study next.</strong>
+                <p>The dashboard keeps lessons, quiz status, streaks, and review tasks in one clear cockpit view.</p>
+                <ul>
+                  <li>Continue the current PPL lesson</li>
+                  <li>Track module progress and weak areas</li>
+                  <li>Keep daily study streaks visible</li>
+                </ul>
+              </div>
+              <img src="dashboardimage.png" width="1000" height="781" alt="PreFlight student dashboard preview" loading="lazy" decoding="async" />
+            </div>
+        <div class="site-info-dashboard site-info-quizzes">
+          <img src="quizzestabmain.png" width="1000" height="1000" alt="PreFlight quizzes and lessons mockup preview" loading="lazy" decoding="async" />
+          <div class="site-info-dashboard-copy">
+            <span>Quiz Practice</span>
+            <strong>Check understanding while lessons are still fresh.</strong>
+            <p>Quizzes sit beside the lesson flow, so student pilots can answer, review explanations, and return to weak topics without losing their place.</p>
+            <ul>
+              <li>Answer focused module checks</li>
+              <li>Review correct and missed choices</li>
+              <li>Move between lessons and quizzes smoothly</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div>
+        <div class="footer-brand-row">
+          <div class="footer-logo">P</div>
+          <div>
+            <div class="footer-brand-name">PreFlight</div>
+            <div class="footer-brand-tagline">LEARN HIGHER</div>
+          </div>
+        </div>
+        <p class="footer-description">A book-led aviation learning platform built for structured lessons, quiz practice, progress tracking, and pilot-focused study paths.</p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Courses</h3>
+        <a href="#">Private Pilot License</a>
+        <a href="#">Instrument Rating</a>
+        <a href="#">Commercial Pilot License</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Platform</h3>
+        <a href="#">About</a>
+        <a href="#">Resources</a>
+        <a href="#">Contact</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+
+  <div class="footer-bottom">
+      <span>&copy; 2026 PreFlight. All rights reserved.</span>
+      <span>Built for student pilots and aviation learners.</span>
+    </div>
+  </footer>
+
+  <div class="login-modal-overlay" id="loginModal" aria-hidden="true">
+    <div class="login-modal" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle" aria-describedby="loginModalDescription">
+      <button class="login-close" type="button" aria-label="Close login popup">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+
+      <section class="login-form-panel">
+        <div class="login-brand-row" aria-label="PreFlight">
+          <span class="login-brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 3v18"></path>
+              <path d="M5 6h14"></path>
+              <path d="m6 6-3 7h6L6 6Z"></path>
+              <path d="m18 6-3 7h6l-3-7Z"></path>
+              <path d="M7 21h10"></path>
+            </svg>
+          </span>
+          <span class="login-brand-copy">
+            <strong>PreFlight</strong>
+            <span>Pilot reviewer</span>
+          </span>
+        </div>
+
+        <h2 id="loginModalTitle">Welcome back</h2>
+        <p class="login-modal-subtitle" id="loginModalDescription">Log in to continue your learning journey.</p>
+
+        <form class="login-form" action="#" method="post">
+          <div class="login-field">
+            <label for="loginEmail">Email</label>
+            <div class="login-input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                <path d="M4 6h16v12H4z"></path>
+                <path d="m4 7 8 6 8-6"></path>
+              </svg>
+              <input id="loginEmail" type="email" name="email" placeholder="you@example.com" autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="login-field">
+            <label for="loginPassword">Password</label>
+            <div class="login-input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                <rect x="5" y="10" width="14" height="10" rx="2"></rect>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+              </svg>
+              <input id="loginPassword" type="password" name="password" placeholder="Enter your password" autocomplete="current-password" />
+              <button class="password-toggle" type="button" aria-label="Show password">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                  <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+            <a class="forgot-link" href="#">Forgot password?</a>
+          </div>
+
+          <div class="login-field confirm-password-field">
+            <label for="loginConfirmPassword">Confirm password</label>
+            <div class="login-input-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                <rect x="5" y="10" width="14" height="10" rx="2"></rect>
+                <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+                <path d="m9 15 2 2 4-4"></path>
+              </svg>
+              <input id="loginConfirmPassword" type="password" name="confirm-password" placeholder="Re-enter your password" autocomplete="new-password" />
+            </div>
+          </div>
+
+          <p class="login-status" role="status" aria-live="polite"></p>
+          <button class="login-submit" type="button">Log In</button>
+          <div class="login-divider"><span>OR</span></div>
+          <button class="login-google-btn" type="button"><span class="google-mark" aria-hidden="true">G</span>Continue with Google</button>
+        </form>
+
+        <p class="login-signup"><span>New here?</span> <a class="signup-link" href="#">Create account</a></p>
+      </section>
+
+      <aside class="login-visual-panel" aria-label="PreFlight study features">
+        <div class="login-visual-content">
+          <div class="login-feature-list">
+            <div class="login-feature-row">
+              <span class="login-feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M4 19V5"></path>
+                  <path d="M4 19h16"></path>
+                  <path d="m7 15 3-3 3 2 5-7"></path>
+                </svg>
+              </span>
+              <span>
+                <strong>Reviewer progress saved</strong>
+                <span>Pick up where you left off across all your devices.</span>
+              </span>
+            </div>
+            <div class="login-feature-row">
+              <span class="login-feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M16 11a4 4 0 1 0-8 0"></path>
+                  <path d="M3 21a7 7 0 0 1 14 0"></path>
+                  <path d="M19 8v6"></path>
+                  <path d="M16 11h6"></path>
+                </svg>
+              </span>
+              <span>
+                <strong>Friends and rankings synced</strong>
+                <span>Compete and learn together with your pilot community.</span>
+              </span>
+            </div>
+            <div class="login-feature-row">
+              <span class="login-feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M12 3v18"></path>
+                  <path d="M5 6h14"></path>
+                  <path d="m6 6-3 7h6L6 6Z"></path>
+                  <path d="m18 6-3 7h6l-3-7Z"></path>
+                </svg>
+              </span>
+              <span>
+                <strong>Built for pilot students</strong>
+                <span>Designed by pilots, for pilots. Focused on what matters.</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="learning-modal-overlay" id="learningModal" aria-hidden="true">
+    <div class="learning-modal" role="dialog" aria-modal="true" aria-labelledby="learningModalTitle" aria-describedby="learningModalDescription">
+      <button class="learning-close" type="button" aria-label="Close start learning popup">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+      <div class="learning-panel" data-learning-panel="courses">
+        <h2 id="learningModalTitle">Choose your course</h2>
+        <p class="learning-modal-subtitle" id="learningModalDescription">Pick the certification path you want to pursue.</p>
+        <div class="learning-options" aria-label="Course options">
+          <button class="learning-option" type="button" data-course="ppl" aria-pressed="false">
+            <span class="learning-option-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M12 3v18"></path>
+                <path d="M5 6h14"></path>
+                <path d="m6 6-3 7h6L6 6Z"></path>
+                <path d="m18 6-3 7h6l-3-7Z"></path>
+                <path d="M7 21h10"></path>
+              </svg>
+            </span>
+            <span>
+              <strong>Private Pilot License (PPL)</strong>
+              <span>Start your journey and learn the fundamentals of flying.</span>
+            </span>
+            <span class="learning-option-arrow" aria-hidden="true">&gt;</span>
+          </button>
+          <button class="learning-option" type="button" data-course="cpl" aria-pressed="false">
+            <span class="learning-option-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M4 14a8 8 0 0 1 16 0"></path>
+                <path d="M6.5 19h11"></path>
+                <path d="M12 14l4-4"></path>
+                <path d="M8 14h.01"></path>
+                <path d="M16 14h.01"></path>
+              </svg>
+            </span>
+            <span>
+              <strong>Commercial Pilot License (CPL)</strong>
+              <span>Build advanced skills for professional pilot training.</span>
+            </span>
+            <span class="learning-option-arrow" aria-hidden="true">&gt;</span>
+          </button>
+          <button class="learning-option" type="button" data-course="ir" aria-pressed="false">
+            <span class="learning-option-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"></path>
+                <path d="M12 3v2"></path>
+                <path d="M12 19v2"></path>
+                <path d="M3 12h2"></path>
+                <path d="M19 12h2"></path>
+              </svg>
+            </span>
+            <span>
+              <strong>Instrument Rating (IR)</strong>
+              <span>Learn to fly with instruments, procedures, and precision.</span>
+            </span>
+            <span class="learning-option-arrow" aria-hidden="true">&gt;</span>
+          </button>
+        </div>
+        <div class="learning-actions">
+          <button class="learning-cancel" type="button">Cancel</button>
+          <button class="learning-continue" type="button" disabled>Continue</button>
+        </div>
+      </div>
+      <div class="learning-panel" data-learning-panel="instructions" hidden>
+        <h2 id="instructionModalTitle">Before you begin</h2>
+        <p class="learning-modal-subtitle" id="instructionModalDescription">Let's set you up for success.</p>
+        <div class="selected-course-box">
+          <span class="selected-course-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M12 3v18"></path>
+              <path d="M5 6h14"></path>
+              <path d="m6 6-3 7h6L6 6Z"></path>
+              <path d="m18 6-3 7h6l-3-7Z"></path>
+              <path d="M7 21h10"></path>
+            </svg>
+          </span>
+          <strong data-selected-course-name>Private Pilot License (PPL)</strong>
+        </div>
+        <div class="instruction-box">
+          <h3>How the initial test works</h3>
+          <div class="instruction-list">
+            <div class="instruction-item">
+              <span class="instruction-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M9 11.5 11 13.5 15.5 9"></path>
+                  <circle cx="12" cy="12" r="9"></circle>
+                </svg>
+              </span>
+              <span>Initial assessment to analyze performance.</span>
+            </div>
+            <div class="instruction-item">
+              <span class="instruction-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M12 20h9"></path>
+                  <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z"></path>
+                </svg>
+              </span>
+              <span>Answer honestly for accurate recommendations.</span>
+            </div>
+            <div class="instruction-item">
+              <span class="instruction-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="12" cy="13" r="8"></circle>
+                  <path d="M12 9v4l2.5 2"></path>
+                  <path d="M9 2h6"></path>
+                </svg>
+              </span>
+              <span>Timer may apply to simulate exam conditions.</span>
+            </div>
+            <div class="instruction-item">
+              <span class="instruction-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"></path>
+                  <path d="M8 9h8"></path>
+                  <path d="M8 13h5"></path>
+                </svg>
+              </span>
+              <span>Explanations come after submission.</span>
+            </div>
+            <div class="instruction-item">
+              <span class="instruction-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M4 19V5"></path>
+                  <path d="M4 19h16"></path>
+                  <path d="m7 15 3-3 3 2 5-7"></path>
+                </svg>
+              </span>
+              <span>Your progress will be tracked after saving.</span>
+            </div>
+          </div>
+        </div>
+        <div class="next-box">
+          <h3>What happens next</h3>
+          <div class="next-steps">
+            <div class="next-step">
+              <span class="next-step-number">1</span>
+              <strong>Initial Test</strong>
+              <span>Take a short test</span>
+            </div>
+            <div class="next-step">
+              <span class="next-step-number">2</span>
+              <strong>View performance</strong>
+              <span>Check out which needs more focus</span>
+            </div>
+            <div class="next-step">
+              <span class="next-step-number">3</span>
+              <strong>Start Learning</strong>
+              <span>Begin your journey</span>
+            </div>
+          </div>
+        </div>
+        <div class="learning-actions">
+          <button class="instruction-back" type="button">Back</button>
+          <button class="instruction-start" type="button">Start Initial Test &gt;</button>
+        </div>
+      </div>
+      <div class="learning-panel" data-learning-panel="construction" hidden>
+        <h2 id="constructionModalTitle">Currently under construction</h2>
+        <p class="learning-modal-subtitle" id="constructionModalDescription">This course path is not available yet.</p>
+        <div class="learning-state-message">Please choose Private Pilot License (PPL) for now.</div>
+        <div class="learning-actions">
+          <button class="instruction-back construction-back" type="button">Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = 'https://ttlnnirwbhmztpcyikhj.supabase.co';
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_ZBoonLsIpoC4z-mVI-kA2g_UcNxGLF7';
+    const MAIN_APP_URL = new URL('./', window.location.href).href;
+    const supabaseClient = window.supabase?.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+    const topbarWrap = document.querySelector('.topbar-wrap');
+    const themeToggle = document.getElementById('themeToggle');
+    const themeToggleIcon = themeToggle?.querySelector('path');
+    const loginButton = document.querySelector('.login-btn');
+    const loginModal = document.getElementById('loginModal');
+    const loginCloseButton = loginModal?.querySelector('.login-close');
+    const loginModalDescription = document.getElementById('loginModalDescription');
+    const loginEmailInput = document.getElementById('loginEmail');
+    const loginForm = loginModal?.querySelector('.login-form');
+    const loginSubmitButton = loginModal?.querySelector('.login-submit');
+    const loginGoogleButton = loginModal?.querySelector('.login-google-btn');
+    const loginSignupLink = loginModal?.querySelector('.signup-link');
+    const loginSignupPrompt = loginModal?.querySelector('.login-signup span');
+    const loginStatus = loginModal?.querySelector('.login-status');
+    const learningButtons = document.querySelectorAll('.start-btn, .hero-primary-btn');
+    const learningModal = document.getElementById('learningModal');
+    const learningCloseButton = learningModal?.querySelector('.learning-close');
+    const learningCancelButton = learningModal?.querySelector('.learning-cancel');
+    const learningOptionButtons = learningModal?.querySelectorAll('.learning-option') ?? [];
+    const learningContinueButton = learningModal?.querySelector('.learning-continue');
+    const instructionStartButton = learningModal?.querySelector('.instruction-start');
+    const learningPanels = learningModal?.querySelectorAll('.learning-panel') ?? [];
+    const panelBackButtons = learningModal?.querySelectorAll('.instruction-back') ?? [];
+    const selectedCourseName = learningModal?.querySelector('[data-selected-course-name]');
+    const passwordToggle = loginModal?.querySelector('.password-toggle');
+    const passwordInput = document.getElementById('loginPassword');
+    const confirmPasswordInput = document.getElementById('loginConfirmPassword');
+    const moduleButtons = document.querySelectorAll('.course-link');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const exploreCoursesButton = document.querySelector('.hero-secondary-btn');
+    let lastScrollY = window.scrollY;
+    let isTopbarMinimized = false;
+    let isTopbarScrollTicking = false;
+    let selectedLearningCourse = '';
+    let authMode = 'login';
+    const defaultLoginDescription = 'Log in to continue your learning journey.';
+    const startLearningSignupDescription = 'Create your PreFlight account to take the initial test and see your weak areas.';
+    const authModeContent = {
+      login: {
+        title: 'Welcome back',
+        description: defaultLoginDescription,
+        submit: 'Log In',
+        busy: 'Logging in...',
+        prompt: 'New here?',
+        link: 'Create account',
+        passwordAutocomplete: 'current-password',
+      },
+      signup: {
+        title: 'Create account',
+        description: startLearningSignupDescription,
+        submit: 'Create account',
+        busy: 'Creating account...',
+        prompt: 'Already have an account?',
+        link: 'Log in',
+        passwordAutocomplete: 'new-password',
+      },
+    };
+
+    const renderAuthMode = (mode = authMode, message) => {
+      authMode = mode;
+      const content = authModeContent[authMode] ?? authModeContent.login;
+      const loginModalTitle = document.getElementById('loginModalTitle');
+      if (loginModal) {
+        loginModal.dataset.authMode = authMode;
+      }
+      if (loginModalTitle) {
+        loginModalTitle.textContent = content.title;
+      }
+      if (loginModalDescription) {
+        loginModalDescription.textContent = message || content.description;
+      }
+      if (loginSubmitButton) {
+        loginSubmitButton.textContent = content.submit;
+      }
+      if (loginSignupPrompt) {
+        loginSignupPrompt.textContent = content.prompt;
+      }
+      if (loginSignupLink) {
+        loginSignupLink.textContent = content.link;
+      }
+      if (passwordInput) {
+        passwordInput.autocomplete = content.passwordAutocomplete;
+      }
+      if (confirmPasswordInput && authMode === 'login') {
+        confirmPasswordInput.value = '';
+      }
+    };
+
+    const setLoginStatus = (message = '') => {
+      if (loginStatus) {
+        loginStatus.textContent = message;
+      }
+    };
+
+    const setLoginBusy = (isBusy, label = 'Working...') => {
+      const content = authModeContent[authMode] ?? authModeContent.login;
+      if (loginSubmitButton) {
+        loginSubmitButton.disabled = isBusy;
+        loginSubmitButton.textContent = isBusy ? label : content.submit;
+      }
+      if (loginGoogleButton) {
+        loginGoogleButton.disabled = isBusy;
+      }
+    };
+
+    const goToMainApp = () => {
+      window.location.href = MAIN_APP_URL;
+    };
+
+    const requireSupabase = () => {
+      if (supabaseClient) {
+        return true;
+      }
+      setLoginStatus('Supabase could not load. Check your internet connection and try again.');
+      return false;
+    };
+
+    const signInWithGoogle = async () => {
+      if (!requireSupabase()) {
+        return;
+      }
+
+      setLoginBusy(true, 'Opening Google...');
+      setLoginStatus('');
+      localStorage.setItem('preflightPostLoginRedirect', MAIN_APP_URL);
+
+      const { error } = await supabaseClient.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: MAIN_APP_URL,
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          },
+        },
+      });
+
+      if (error) {
+        setLoginBusy(false);
+        setLoginStatus(error.message || 'Google login could not start. Please try again.');
+      }
+    };
+
+    const signInWithPassword = async () => {
+      if (!requireSupabase()) {
+        return;
+      }
+
+      const email = loginEmailInput?.value.trim();
+      const password = passwordInput?.value;
+      if (!email || !password) {
+        setLoginStatus('Enter your email and password, or continue with Google.');
+        return;
+      }
+
+      setLoginBusy(true, 'Logging in...');
+      setLoginStatus('');
+      const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        setLoginBusy(false);
+        setLoginStatus(error.message || 'Login failed. Please check your details.');
+        return;
+      }
+
+      goToMainApp();
+    };
+
+    const signUpWithPassword = async () => {
+      if (!requireSupabase()) {
+        return;
+      }
+
+      const email = loginEmailInput?.value.trim();
+      const password = passwordInput?.value;
+      const confirmPassword = confirmPasswordInput?.value;
+      if (!email || !password) {
+        setLoginStatus('Enter your email and password to create an account.');
+        return;
+      }
+
+      if (!confirmPassword) {
+        setLoginStatus('Confirm your password to create an account.');
+        return;
+      }
+
+      if (password.length < 6) {
+        setLoginStatus('Use a password with at least 6 characters.');
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        setLoginStatus('Passwords do not match.');
+        return;
+      }
+
+      setLoginBusy(true, authModeContent.signup.busy);
+      setLoginStatus('');
+
+      const { data, error } = await supabaseClient.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: MAIN_APP_URL,
+        },
+      });
+
+      if (error) {
+        setLoginBusy(false);
+        setLoginStatus(error.message || 'Account could not be created. Please try again.');
+        return;
+      }
+
+      if (data.session) {
+        goToMainApp();
+        return;
+      }
+
+      setLoginBusy(false);
+      setLoginStatus('Account created. Check your email to confirm, then log in.');
+    };
+
+    const openLoginModal = (message = defaultLoginDescription, mode = 'login') => {
+      renderAuthMode(mode, message);
+      setLoginBusy(false);
+      setLoginStatus('');
+      loginModal?.classList.add('is-open');
+      loginModal?.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('login-modal-open');
+      window.setTimeout(() => loginEmailInput?.focus(), 80);
+    };
+
+    const openSignupModal = (message = startLearningSignupDescription) => {
+      openLoginModal(message, 'signup');
+    };
+
+    const closeLoginModal = () => {
+      loginModal?.classList.remove('is-open');
+      loginModal?.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('login-modal-open');
+    };
+
+    const closeLearningModal = () => {
+      learningModal?.classList.remove('is-open');
+      learningModal?.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('learning-modal-open');
+      resetLearningSelection();
+    };
+
+    const setLearningPanel = (panelName) => {
+      learningPanels.forEach((panel) => {
+        panel.hidden = panel.dataset.learningPanel !== panelName;
+      });
+
+      const panelLabels = {
+        courses: ['learningModalTitle', 'learningModalDescription'],
+        instructions: ['instructionModalTitle', 'instructionModalDescription'],
+        construction: ['constructionModalTitle', 'constructionModalDescription'],
+      };
+      const [titleId, descriptionId] = panelLabels[panelName] ?? panelLabels.courses;
+      learningModal?.querySelector('.learning-modal')?.setAttribute('aria-labelledby', titleId);
+      learningModal?.querySelector('.learning-modal')?.setAttribute('aria-describedby', descriptionId);
+    };
+
+    const resetLearningSelection = () => {
+      selectedLearningCourse = '';
+      setLearningPanel('courses');
+      if (learningContinueButton) {
+        learningContinueButton.disabled = true;
+      }
+      learningOptionButtons.forEach((option) => {
+        option.classList.remove('is-selected');
+        option.setAttribute('aria-pressed', 'false');
+      });
+    };
+
+    const openLearningModal = () => {
+      resetLearningSelection();
+      learningModal?.classList.add('is-open');
+      learningModal?.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('learning-modal-open');
+      window.setTimeout(() => learningCloseButton?.focus(), 80);
+    };
+
+    loginButton?.addEventListener('click', () => openLoginModal());
+    loginCloseButton?.addEventListener('click', closeLoginModal);
+    loginForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (authMode === 'signup') {
+        signUpWithPassword();
+        return;
+      }
+      signInWithPassword();
+    });
+    loginSubmitButton?.addEventListener('click', () => {
+      if (authMode === 'signup') {
+        signUpWithPassword();
+        return;
+      }
+      signInWithPassword();
+    });
+    loginGoogleButton?.addEventListener('click', signInWithGoogle);
+    loginSignupLink?.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (authMode === 'signup') {
+        renderAuthMode('login');
+        setLoginBusy(false);
+        setLoginStatus('');
+        window.setTimeout(() => loginEmailInput?.focus(), 40);
+        return;
+      }
+      closeLoginModal();
+      openLearningModal();
+    });
+    loginModal?.addEventListener('click', (event) => {
+      if (event.target === loginModal) {
+        closeLoginModal();
+      }
+    });
+
+    learningButtons.forEach((button) => {
+      button.addEventListener('click', openLearningModal);
+    });
+
+    learningOptionButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        learningOptionButtons.forEach((option) => {
+          option.classList.remove('is-selected');
+          option.setAttribute('aria-pressed', 'false');
+        });
+        button.classList.add('is-selected');
+        button.setAttribute('aria-pressed', 'true');
+        selectedLearningCourse = button.dataset.course ?? '';
+        if (learningContinueButton) {
+          learningContinueButton.disabled = false;
+        }
+      });
+    });
+
+    learningContinueButton?.addEventListener('click', () => {
+      if (selectedLearningCourse === 'ppl') {
+        if (selectedCourseName) {
+          selectedCourseName.textContent = 'Private Pilot License (PPL)';
+        }
+        setLearningPanel('instructions');
+      } else if (selectedLearningCourse === 'cpl' || selectedLearningCourse === 'ir') {
+        setLearningPanel('construction');
+      }
+    });
+
+    panelBackButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        setLearningPanel('courses');
+      });
+    });
+
+    instructionStartButton?.addEventListener('click', () => {
+      localStorage.setItem('preflightSelectedCourse', selectedLearningCourse || 'ppl');
+      closeLearningModal();
+      window.setTimeout(() => openSignupModal(), 120);
+    });
+
+    learningCloseButton?.addEventListener('click', closeLearningModal);
+    learningCancelButton?.addEventListener('click', closeLearningModal);
+    learningModal?.addEventListener('click', (event) => {
+      if (event.target === learningModal) {
+        closeLearningModal();
+      }
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && loginModal?.classList.contains('is-open')) {
+        closeLoginModal();
+      }
+
+      if (event.key === 'Escape' && learningModal?.classList.contains('is-open')) {
+        closeLearningModal();
+      }
+    });
+
+    passwordToggle?.addEventListener('click', () => {
+      if (!passwordInput) {
+        return;
+      }
+
+      const shouldShowPassword = passwordInput.type === 'password';
+      passwordInput.type = shouldShowPassword ? 'text' : 'password';
+      passwordToggle.setAttribute('aria-label', shouldShowPassword ? 'Hide password' : 'Show password');
+    });
+
+    const setTopbarMinimized = (shouldMinimize) => {
+      if (shouldMinimize === isTopbarMinimized) {
+        return;
+      }
+
+      isTopbarMinimized = shouldMinimize;
+      topbarWrap?.classList.toggle('is-minimized', shouldMinimize);
+    };
+
+    const updateTopbarOnScroll = () => {
+      const currentScrollY = window.scrollY;
+      const isScrollingDown = currentScrollY > lastScrollY;
+      const isPastHeroStart = currentScrollY > 96;
+
+      setTopbarMinimized(isScrollingDown && isPastHeroStart);
+      lastScrollY = Math.max(currentScrollY, 0);
+    };
+
+    updateTopbarOnScroll();
+    window.addEventListener('scroll', () => {
+      if (isTopbarScrollTicking) {
+        return;
+      }
+
+      isTopbarScrollTicking = true;
+      window.requestAnimationFrame(() => {
+        updateTopbarOnScroll();
+        isTopbarScrollTicking = false;
+      });
+    }, { passive: true });
+
+    const applyPageView = () => {
+      const isFeaturesView = window.location.hash === '#features';
+      document.body.classList.toggle('view-features', isFeaturesView);
+      document.body.classList.toggle('view-home', !isFeaturesView);
+
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute('href') === (isFeaturesView ? '#features' : '#home');
+        link.classList.toggle('is-active', isActive);
+        if (isActive) {
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+    };
+    applyPageView();
+    window.addEventListener('hashchange', () => {
+      applyPageView();
+      window.requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    });
+
+    exploreCoursesButton?.addEventListener('click', () => {
+      document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    const moonIconPath = 'M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 7 7 0 1 0 20.5 14.5Z';
+    const sunIconPath = 'M12 4V2m0 20v-2m8-8h2M2 12h2m13.66-5.66 1.41-1.41M4.93 19.07l1.41-1.41m0-11.32L4.93 4.93m14.14 14.14-1.41-1.41M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Z';
+
+    const getSavedTheme = () => {
+      try {
+        return window.localStorage.getItem('preflight-theme');
+      } catch (error) {
+        return null;
+      }
+    };
+
+    const saveTheme = (theme) => {
+      try {
+        window.localStorage.setItem('preflight-theme', theme);
+      } catch (error) {
+        // File previews can block storage; the buttons should still work.
+      }
+    };
+
+    const updateThemeIcon = () => {
+      const isDark = document.body.classList.contains('dark-mode');
+      themeToggle?.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to night mode');
+      themeToggleIcon?.setAttribute('d', isDark ? sunIconPath : moonIconPath);
+    };
+
+    if (getSavedTheme() === 'dark') {
+      document.body.classList.add('dark-mode');
+    }
+
+    updateThemeIcon();
+    window.requestAnimationFrame(() => document.body.classList.add('is-ready'));
+
+    themeToggle?.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      saveTheme(isDark ? 'dark' : 'light');
+      updateThemeIcon();
+      document.body.classList.remove('theme-pulse');
+      void document.body.offsetWidth;
+      document.body.classList.add('theme-pulse');
+      window.setTimeout(() => document.body.classList.remove('theme-pulse'), 560);
+    });
+
+    const sharedModulePanel = document.getElementById('courseModulePanel');
+
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealTargets = document.querySelectorAll('.content-feature, .course-card, .course-module-panel, .site-info-image, .site-info-copy, .site-info-dashboard, .footer-main > div');
+
+    revealTargets.forEach((target, index) => {
+      target.classList.add('motion-reveal');
+      target.style.setProperty('--reveal-delay', `${Math.min(index * 45, 220)}ms`);
+    });
+
+    if (prefersReducedMotion) {
+      revealTargets.forEach((target) => target.classList.add('is-visible'));
+    } else {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+
+      revealTargets.forEach((target) => revealObserver.observe(target));
+    }
+    moduleButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const card = button.closest('.course-card');
+        const modulePanel = card?.querySelector('.course-modules');
+        const isAlreadyOpen = card?.classList.contains('is-open');
+
+        document.querySelectorAll('.course-card').forEach((courseCard) => {
+          courseCard.classList.remove('is-open');
+        });
+
+        moduleButtons.forEach((moduleButton) => {
+          moduleButton.setAttribute('aria-expanded', 'false');
+          moduleButton.textContent = 'View modules';
+        });
+
+        document.querySelectorAll('.course-modules').forEach((panel) => {
+          panel.setAttribute('aria-hidden', 'true');
+        });
+
+        if (isAlreadyOpen) {
+          sharedModulePanel?.classList.remove('is-visible');
+          sharedModulePanel?.setAttribute('aria-hidden', 'true');
+          if (sharedModulePanel) {
+            sharedModulePanel.innerHTML = '';
+          }
+          return;
+        }
+
+        card?.classList.add('is-open');
+        button.setAttribute('aria-expanded', 'true');
+        button.textContent = 'Hide modules';
+        modulePanel?.setAttribute('aria-hidden', 'false');
+
+        if (sharedModulePanel && modulePanel) {
+          sharedModulePanel.innerHTML = modulePanel.innerHTML;
+          sharedModulePanel.classList.add('is-visible');
+          sharedModulePanel.setAttribute('aria-hidden', 'false');
+        }
+      });
+    });
+    moduleButtons[0]?.click();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

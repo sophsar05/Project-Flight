@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PreFlight – Aviation exam prep for PPL, CPL, IR, and ATPL students." />
+  <title>PreFlight</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" role="navigation" aria-label="Main navigation">
+      <div class="logo" aria-hidden="true">✈</div>
+      <nav class="nav">
+        <button class="nav-btn" data-page="dashboard" aria-label="Dashboard">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5"></path><path d="M6.5 10v9h11v-9"></path><path d="M10 19v-5h4v5"></path></svg>
+          Dashboard
+        </button>
+        <button class="nav-btn active" data-page="lessons" aria-label="Lessons">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 5.5A2.5 2.5 0 0 1 7 3h13v16H7a2.5 2.5 0 0 0-2.5 2.5v-16Z"></path><path d="M4.5 21.5A2.5 2.5 0 0 1 7 19h13"></path><path d="M8 7h8"></path><path d="M8 10.5h6"></path></svg>
+          Lessons
+        </button>
+        <button class="nav-btn" data-page="daily" aria-label="Daily Task">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v3"></path><path d="M17 3v3"></path><path d="M4.5 8.5h15"></path><rect x="4.5" y="5" width="15" height="15.5" rx="3"></rect><path d="m8 14 2.1 2.1L16 10.5"></path></svg>
+          Daily Task
+        </button>
+        <button class="nav-btn" data-page="friends" aria-label="Friends">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.25"></circle><path d="M3.75 19.5a5.25 5.25 0 0 1 10.5 0"></path><path d="M16.25 10.2a2.6 2.6 0 1 0-1.2-4.92"></path><path d="M15.5 14.4a4.75 4.75 0 0 1 4.75 4.75"></path></svg>
+          Friends
+        </button>
+        <button class="nav-btn" data-page="settings" aria-label="Settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5A3.5 3.5 0 1 0 12 8.5a3.5 3.5 0 0 0 0 7Z"></path><path d="M19.4 15a1.8 1.8 0 0 0 .36 1.98l.05.05a2 2 0 0 1-2.83 2.83l-.05-.05a1.8 1.8 0 0 0-1.98-.36 1.8 1.8 0 0 0-1.1 1.66V21.2a2 2 0 0 1-4 0v-.09a1.8 1.8 0 0 0-1.1-1.66 1.8 1.8 0 0 0-1.98.36l-.05.05a2 2 0 0 1-2.83-2.83l.05-.05A1.8 1.8 0 0 0 4.3 15a1.8 1.8 0 0 0-1.66-1.1H2.55a2 2 0 0 1 0-4h.09A1.8 1.8 0 0 0 4.3 8.8a1.8 1.8 0 0 0-.36-1.98l-.05-.05a2 2 0 0 1 2.83-2.83l.05.05a1.8 1.8 0 0 0 1.98.36 1.8 1.8 0 0 0 1.1-1.66V2.6a2 2 0 0 1 4 0v.09a1.8 1.8 0 0 0 1.1 1.66 1.8 1.8 0 0 0 1.98-.36l.05-.05a2 2 0 0 1 2.83 2.83l-.05.05a1.8 1.8 0 0 0-.36 1.98 1.8 1.8 0 0 0 1.66 1.1h.09a2 2 0 0 1 0 4h-.09A1.8 1.8 0 0 0 19.4 15Z"></path></svg>
+          Settings
+        </button>
+      </nav>
+      <button class="sidebar-theme" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z"></path></svg>
+        <span>Theme</span>
+      </button>
+      <button class="logout" aria-label="Log out">
+        <span aria-hidden="true">↪</span>Logout
+      </button>
+    </aside>
+    <main class="main" id="main-content">
+      <div id="view" class="view"></div>
+    </main>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
