@@ -680,3 +680,121 @@ body[data-theme="dark"] .settings-hero:before{content:none}
 .view,.page{contain:layout style}
 .panel,.reader,.quiz-side,.quiz-main,.daily-side,.daily-question-card,
 .dashboard-right,.dashboard-main{contain:layout style}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   ✈  GAME-STYLE UI  —  engaging, achievement-driven, fun
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Buttons: pill-shape CTAs, punchy gradient, big lift ─────────────────── */
+.primary{border-radius:999px;background:linear-gradient(135deg,#ff7826 0%,#dc4010 100%);box-shadow:0 10px 30px rgba(210,58,14,.42),inset 0 1px 0 rgba(255,255,255,.28);letter-spacing:.01em}
+.primary:hover{background:linear-gradient(135deg,#ff8e3a 0%,#e85220 100%);transform:translateY(-3px);box-shadow:0 18px 40px rgba(210,58,14,.50),inset 0 1px 0 rgba(255,255,255,.30)}
+.resume-btn,.module-inline .btn{border-radius:999px}
+.btn.secondary{border-radius:999px}
+.friend-chip{border-radius:999px!important}
+.friend-chip.accept{background:linear-gradient(135deg,#22c55e,#16a34a);border-color:rgba(34,197,94,.46);box-shadow:0 8px 18px rgba(22,163,74,.24),inset 0 1px 0 rgba(255,255,255,.22)}
+
+/* ── Progress / XP bars: thicker ─────────────────────────────────────────── */
+.bar{height:8px}
+.fill{border-radius:inherit}
+.daily-milestone .bar{height:8px}
+.daily-milestone .fill{background:linear-gradient(90deg,#f59e0b,#f97316)}
+.quiz-submit:disabled:after{background:linear-gradient(90deg,transparent,rgba(255,130,50,.28),transparent)}
+
+/* ── Sidebar nav: stronger active highlight ───────────────────────────────── */
+.nav-btn.active{background:rgba(255,255,255,.22)!important;border-radius:7px}
+.nav-btn.active:after{background:linear-gradient(180deg,#ff7826,rgba(255,255,255,.80))!important}
+
+/* ── Dashboard stat cards: colored top accent bar (HUD style) ─────────────── */
+.modules-card{border-top:3px solid rgba(79,159,214,.82)!important}
+.accuracy-card{border-top:3px solid rgba(79,159,214,.72)!important}
+.streak-card{border-top:3px solid rgba(245,158,11,.82)!important}
+.modules-card .metric-logo{background:rgba(79,159,214,.16)!important;color:#2d7fba!important}
+
+/* ── Streak: fire colour, big personality ─────────────────────────────────── */
+.streak-value-number,.streak-number{color:#f59e0b!important}
+.streak-badge{background:linear-gradient(145deg,#f97316,#ef4444)!important;box-shadow:0 10px 24px rgba(239,68,68,.22),inset 0 1px 0 rgba(255,255,255,.22)!important}
+.streak-card .metric-badge{background:linear-gradient(145deg,rgba(249,115,22,.34),rgba(239,68,68,.22))!important;border-color:rgba(249,115,22,.34)!important}
+.streak-bars span.today{background:linear-gradient(180deg,#f59e0b,#f97316)!important;border-color:rgba(255,210,130,.56)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.44),0 8px 18px rgba(245,158,11,.24)!important}
+.streak-bars span.active{background:linear-gradient(180deg,rgba(245,158,11,.72),rgba(249,115,22,.50))!important;border-color:rgba(255,210,155,.44)!important}
+.streak-best-pill{color:#f59e0b!important;border-color:rgba(245,158,11,.36)!important}
+.cube-day.today{border-color:rgba(245,158,11,.54)!important;color:#f59e0b!important}
+
+/* ── Score rings (quiz/daily only — not dashboard avatar) ─────────────────── */
+.score-ring{background:conic-gradient(#f59e0b var(--score-angle,0deg),rgba(255,255,255,.34) 0deg)!important}
+.daily-score-ring{background:conic-gradient(#f59e0b var(--daily-angle,0deg),rgba(255,255,255,.38) 0deg)!important}
+
+/* ── Correct / Wrong answers: rewarding vivid feedback ───────────────────── */
+.answer.correct{background:rgba(34,197,94,.14)!important;border-color:rgba(34,197,94,.62)!important}
+.answer.correct .letter{background:#22c55e!important;color:#fff!important}
+.answer.wrong{background:rgba(239,68,68,.11)!important;border-color:rgba(239,68,68,.55)!important}
+.answer.wrong .letter{background:#ef4444!important;color:#fff!important}
+.daily-answer.correct{background:rgba(34,197,94,.16)!important;border-color:rgba(34,197,94,.60)!important}
+.daily-answer.wrong{background:rgba(239,68,68,.12)!important;border-color:rgba(239,68,68,.52)!important}
+.dot.good{background:rgba(34,197,94,.18)!important;border-color:rgba(34,197,94,.60)!important;color:#16a34a!important}
+.dot.bad{background:rgba(239,68,68,.14)!important;border-color:rgba(239,68,68,.60)!important;color:#c0392b!important}
+
+/* ── Leaderboard: gold / silver / bronze medals ──────────────────────────── */
+.daily-board-row:nth-child(1) .daily-rank{background:linear-gradient(145deg,#f59e0b,#d97706)!important;color:#fff!important;box-shadow:0 8px 20px rgba(245,158,11,.30)!important}
+.daily-board-row:nth-child(2) .daily-rank{background:linear-gradient(145deg,#94a3b8,#64748b)!important;color:#fff!important}
+.daily-board-row:nth-child(3) .daily-rank{background:linear-gradient(145deg,#c97330,#92400e)!important;color:#fff!important}
+.daily-board-row:nth-child(1){background:linear-gradient(145deg,rgba(255,255,255,.76),rgba(254,243,199,.52))!important;border-color:rgba(245,158,11,.34)!important}
+.leader-table-row:nth-child(1) .leader-avatar{background:linear-gradient(145deg,#f59e0b,#d97706)!important;color:#fff!important;box-shadow:0 8px 18px rgba(245,158,11,.28)!important;border-color:rgba(245,158,11,.32)!important}
+.leader-table-row:nth-child(2) .leader-avatar{background:linear-gradient(145deg,#94a3b8,#64748b)!important;color:#fff!important}
+.leader-table-row:nth-child(3) .leader-avatar{background:linear-gradient(145deg,#c97330,#92400e)!important;color:#fff!important}
+.leader-standing-card:nth-child(1) .leader-rank-badge{background:linear-gradient(145deg,#f59e0b,#d97706)!important;color:#fff!important}
+.dashboard-friend-rank:nth-child(1)>b{background:linear-gradient(145deg,rgba(245,158,11,.88),rgba(217,119,6,.74))!important;color:#fff!important;box-shadow:0 5px 12px rgba(245,158,11,.20)!important}
+.dashboard-friend-rank:nth-child(2)>b{background:linear-gradient(145deg,rgba(148,163,184,.82),rgba(100,116,139,.68))!important;color:#fff!important}
+.dashboard-friend-rank:nth-child(3)>b{background:linear-gradient(145deg,rgba(201,115,48,.82),rgba(146,64,14,.68))!important;color:#fff!important}
+
+/* ── Daily week completion: vivid ticks ──────────────────────────────────── */
+.daily-week-row .done{background:linear-gradient(145deg,#22c55e,#16a34a)!important;border-color:rgba(34,197,94,.46)!important;box-shadow:0 5px 12px rgba(34,197,94,.22)!important}
+.daily-week-row .today{border-color:rgba(245,158,11,.52)!important;color:#f59e0b!important}
+
+/* ── Daily stat grid: HUD color borders ──────────────────────────────────── */
+.daily-stat-grid article:nth-child(1){border-top:2px solid rgba(79,159,214,.72)!important}
+.daily-stat-grid article:nth-child(2){border-top:2px solid rgba(34,197,94,.68)!important}
+.daily-stat-grid article:nth-child(3){border-top:2px solid rgba(245,158,11,.72)!important}
+.daily-stat-grid article:nth-child(4){border-top:2px solid rgba(139,92,246,.66)!important}
+
+/* ── Daily answers: game button lift ─────────────────────────────────────── */
+.daily-answer:hover:not(:disabled){transform:translateY(-2px)!important;box-shadow:0 14px 30px rgba(76,106,130,.16)!important}
+
+/* ── Weak topic danger colour ────────────────────────────────────────────── */
+.test-score{background:linear-gradient(145deg,rgba(239,68,68,.12),rgba(255,255,255,.26))!important;border-color:rgba(239,68,68,.26)!important}
+.weak-label{background:rgba(239,68,68,.11)!important;border-color:rgba(239,68,68,.30)!important;color:#c0392b!important}
+
+/* ── Module cards: bigger hover lift in lesson grid ─────────────────────── */
+.lesson-empty .lesson:hover{transform:translateY(-4px)!important;box-shadow:0 22px 44px rgba(76,106,130,.20),0 6px 14px rgba(76,106,130,.12),inset 0 1px 0 rgba(255,255,255,.88)!important}
+.lesson-empty .module-icon{font-size:1.28rem}
+
+/* ── Kicker labels: a touch more tracking ────────────────────────────────── */
+.kicker{letter-spacing:.14em}
+
+/* ── Friends active row: accent highlight ────────────────────────────────── */
+.friend-card.active,.friend-card.search-result:hover{background:linear-gradient(145deg,rgba(255,255,255,.56),rgba(255,243,235,.40))!important;border-color:rgba(255,130,50,.44)!important}
+
+/* ── Daily pill / progress label: orange accent ──────────────────────────── */
+.daily-pill{background:rgba(255,240,230,.64)!important;border-color:rgba(255,150,80,.36)!important;color:#dc5c20!important}
+
+/* ── Reward icon: more vivid ─────────────────────────────────────────────── */
+.daily-reward-icon{background:linear-gradient(145deg,#f97316,#dc4010)!important;box-shadow:0 10px 22px rgba(220,64,16,.22),inset 0 1px 0 rgba(255,255,255,.28)!important}
+
+/* ── Milestone bar label: achievement color ──────────────────────────────── */
+.daily-milestone b{color:#f59e0b!important}
+
+/* ── Dark mode game-style adjustments ────────────────────────────────────── */
+body[data-theme="dark"] .primary{background:linear-gradient(135deg,rgba(255,130,50,.86),rgba(220,72,24,.76))!important;box-shadow:0 10px 28px rgba(200,58,14,.30),inset 0 1px 0 rgba(255,250,244,.18)!important}
+body[data-theme="dark"] .answer.correct{background:rgba(34,197,94,.18)!important;border-color:rgba(34,197,94,.58)!important}
+body[data-theme="dark"] .answer.correct .letter{background:#22c55e!important}
+body[data-theme="dark"] .answer.wrong{background:rgba(239,68,68,.18)!important;border-color:rgba(239,68,68,.52)!important}
+body[data-theme="dark"] .answer.wrong .letter{background:#ef4444!important}
+body[data-theme="dark"] .daily-answer.correct{background:rgba(34,197,94,.20)!important;border-color:rgba(34,197,94,.56)!important}
+body[data-theme="dark"] .daily-answer.wrong{background:rgba(239,68,68,.18)!important;border-color:rgba(239,68,68,.50)!important}
+body[data-theme="dark"] .daily-week-row .done{background:linear-gradient(145deg,rgba(34,197,94,.60),rgba(22,163,74,.48))!important;border-color:rgba(34,197,94,.38)!important}
+body[data-theme="dark"] .streak-badge{background:linear-gradient(145deg,rgba(249,115,22,.70),rgba(239,68,68,.56))!important}
+body[data-theme="dark"] .streak-value-number,.body[data-theme="dark"] .streak-number{color:#fbbf24!important}
+body[data-theme="dark"] .modules-card{border-top-color:rgba(79,159,214,.60)!important}
+body[data-theme="dark"] .accuracy-card{border-top-color:rgba(79,159,214,.56)!important}
+body[data-theme="dark"] .streak-card{border-top-color:rgba(245,158,11,.60)!important}
+body[data-theme="dark"] .dot.good{background:rgba(34,197,94,.24)!important;border-color:rgba(34,197,94,.58)!important;color:#6ee7b7!important}
+body[data-theme="dark"] .dot.bad{background:rgba(239,68,68,.22)!important;border-color:rgba(239,68,68,.58)!important;color:#fca5a5!important}
