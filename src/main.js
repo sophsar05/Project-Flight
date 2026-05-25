@@ -22,7 +22,6 @@ const LANDING_PAGE_URL = location.origin + '/';
 
 function redirectToLanding() { location.replace(LANDING_PAGE_URL); }
 
-const TAB_LOADING_MIN_MS = 700;
 const TAB_ASSETS = {
   dashboard: ['dashboardhero-optimized.jpg', 'backgroundmountain-optimized.jpg', 'friendsherobg-optimized.jpg'],
   lessons: ['lessonsherobg2-optimized.jpg', 'backgroundmountain-optimized.jpg'],
@@ -102,20 +101,8 @@ function preloadTabData(page) {
   return Promise.resolve();
 }
 
-function waitForTabLoading() { return new Promise(resolve => setTimeout(resolve, TAB_LOADING_MIN_MS)); }
-
 function tabTitle(page) {
   return { dashboard: 'Dashboard', lessons: 'Lessons', daily: 'Daily Task', friends: 'Friends', settings: 'Settings' }[page] || 'Page';
-}
-
-function tabLoadingMessage(page) {
-  return { dashboard: 'Lining up your progress, streaks, and next review.', lessons: 'Pulling your modules onto the flight deck.', daily: "Checking today's challenge window and reset timer.", friends: 'Syncing classmates, requests, and study circle status.', settings: 'Loading your pilot profile and preferences.' }[page] || 'Preparing the latest synced workspace.';
-}
-
-function showTabLoading(page) {
-  const { escapeHTML } = window;
-  const title = tabTitle(page);
-  document.getElementById('view').innerHTML = `<section class="page"><div class="tab-loading-shell glass" role="status" aria-live="polite"><div class="tab-loading-card"><div class="tab-loading-mark" aria-hidden="true"></div><div class="kicker">LOADING</div><h2>${title}</h2><p>${tabLoadingMessage(page)}</p><div class="tab-loading-runway" aria-hidden="true"></div></div></div></section>`;
 }
 
 function setNav(page) {
@@ -141,8 +128,7 @@ function lockRepeatedNavClick(page) {
 async function navigateToPage(page) {
   pauseQuizTimer();
   setNav(page);
-  showTabLoading(page);
-  await Promise.all([waitForTabLoading(), preloadTabAssets(page), preloadTabData(page)]);
+  await Promise.all([preloadTabAssets(page), preloadTabData(page)]);
   if (activePage() !== page) return;
   try {
     if (page === 'dashboard') renderDashboard();

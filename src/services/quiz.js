@@ -3,9 +3,15 @@ import { state } from '../state.js';
 import { answerLetter, clamp, escapeHTML, normalizeQuestion, groupByTopic, selectDiagnostic, selectProgressiveQuestions, selectWeakTopicReview, progressiveDifficultyRatios, distribution, topDistributionItems, difficultyValue } from '../utils.js';
 import { questions } from '../data/questions.js';
 import { agkQuestions } from '../data/questions-agk.js';
+import { humanPerformanceQuestions } from '../data/questions-human-performance.js';
+import { principlesOfFlightQuestions } from '../data/questions-principles-of-flight.js';
 
 // Local question banks merged into allQuestions when Supabase data loads
-const LOCAL_QUESTION_BANKS = [...agkQuestions];
+const LOCAL_QUESTION_BANKS = [
+  ...agkQuestions,
+  ...humanPerformanceQuestions,
+  ...principlesOfFlightQuestions,
+];
 
 const DEV_EMAILS = [];
 
