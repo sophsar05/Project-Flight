@@ -2,6 +2,10 @@ import { supabase } from '../lib/supabase.js';
 import { state } from '../state.js';
 import { answerLetter, clamp, escapeHTML, normalizeQuestion, groupByTopic, selectDiagnostic, selectProgressiveQuestions, selectWeakTopicReview, progressiveDifficultyRatios, distribution, topDistributionItems, difficultyValue } from '../utils.js';
 import { questions } from '../data/questions.js';
+import { agkQuestions } from '../data/questions-agk.js';
+
+// Local question banks merged into allQuestions when Supabase data loads
+const LOCAL_QUESTION_BANKS = [...agkQuestions];
 
 const DEV_EMAILS = [];
 
@@ -31,12 +35,28 @@ export function averageScore() {
   return Math.round(history.reduce((sum, item) => sum + item.percent, 0) / history.length);
 }
 
+export function mergeLocalQuestions(supabaseRows) {
+  // Avoid duplicates: skip a local question if Supabase already has one with the
+  // same module + question text (case-insensitive).
+  const supabaseKeys = new Set(
+    (supabaseRows || []).map(q => `${q.module}||${String(q.question || '').trim().toLowerCase()}`)
+  );
+  const unique = LOCAL_QUESTION_BANKS.filter(
+    q => !supabaseKeys.has(`${q.module}||${String(q.question || '').trim().toLowerCase()}`)
+  );
+  return [...(supabaseRows || []), ...unique];
+}
+
 export async function loadSupabaseQuestions() {
-  if (!state.currentUser) return [];
+  if (!state.currentUser) {
+    // Still expose local question banks for guest / offline use
+    state.allQuestions = mergeLocalQuestions([]);
+    return state.allQuestions;
+  }
   const columns = 'id,module,topic,subtopic,skill_tag,question_type,difficulty,question,option_a,option_b,option_c,option_d,correct_option,discussion,diagram_needed,diagram_ref';
   const { data, error } = await supabase.from('exp_questions').select(columns);
   if (error) throw error;
-  state.allQuestions = Array.isArray(data) ? data : [];
+  state.allQuestions = mergeLocalQuestions(Array.isArray(data) ? data : []);
   return state.allQuestions;
 }
 

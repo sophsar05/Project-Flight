@@ -9,7 +9,7 @@ import { loadFriendState } from './services/friends.js';
 import { loadDailyTaskData } from './services/daily.js';
 
 import { renderLessons, showLessonsHome, openLessonNotes, setupLessonButtons, updateLessonModuleAccuracyLabels, updateLessonProgressSummary, updateModuleAnalysisPanels } from './pages/lessons.js';
-import { renderSettings, renderTempLoginModal, tempLogin, tempLogout, handleProfileOnboarding, setOnboardingLicense, showCompleteProfileOnboarding, saveProfileOnboarding, setProfileStatus, saveProfileSettings } from './pages/settings.js';
+import { renderSettings, renderTempLoginModal, tempLogin, tempLogout, handleProfileOnboarding, setOnboardingLicense, showCompleteProfileOnboarding, saveProfileOnboarding, setProfileStatus, saveProfileSettings, selectOnboardingCourse, onboardingNextStep, onboardingBack, answerOnboardingTest, onboardingTestNext } from './pages/settings.js';
 import { renderDashboard, refreshDashboardMetrics, applyDashboardData, applyWeakestPerformanceRow, showWeakAreas, loadWeakestPerformance, toggleDashboardSidebar, updateDashboardProfileSummary, renderDashboardFriendsLeaderboard, dashboardFriendsLeaderboardRowsHTML, loadDashboardFriendsLeaderboardCard, setupDashboardInteractions, invalidateDashboardPreload } from './pages/dashboard.js';
 import { renderFriends, selectFriend, closeFriendDetail, setupFriendSearch, profileDisplayName, profileUsername, profileInitials } from './pages/friends.js';
 import { renderDailyTask, startDailyChallenge, renderDailyQuestion, answerDailyQuestion, skipDailyTest, renderDailyResults, renderDailyLeaderboard, renderDailyLeaderboardCard, setDailyLeaderboardMode, clearDailyTimer, clearDailyResetTimer, toggleDailyPause, resetDailyTaskSession, getTodayDailyResultExport } from './pages/daily.js';
@@ -17,8 +17,11 @@ import { renderQuiz, renderSetup, closeSetup, questionHTML, answerQ, restoreQuiz
 
 import { sendFriendRequest, cancelFriendRequest, acceptFriendRequestById, declineFriendRequestById, removeFriend } from './services/friends.js';
 
-const APP_AUTH_ROUTE = /\/app\/?$/i.test(location.pathname) || /\/app\/index\.html$/i.test(location.pathname);
-const LANDING_PAGE_URL = new URL('/landing.html', location.href).href;
+const APP_AUTH_ROUTE = /\/app(\.html)?\/?$/i.test(location.pathname);
+const LANDING_PAGE_URL = location.origin + '/';
+
+function redirectToLanding() { location.replace(LANDING_PAGE_URL); }
+
 const TAB_LOADING_MIN_MS = 700;
 const TAB_ASSETS = {
   dashboard: ['dashboardhero-optimized.jpg', 'backgroundmountain-optimized.jpg', 'friendsherobg-optimized.jpg'],
@@ -33,7 +36,6 @@ function hasAuthCallbackHash() {
   return /(?:^|[&#])(access_token|refresh_token|error|error_code)=/i.test(location.hash);
 }
 
-function redirectToLanding() { location.replace(LANDING_PAGE_URL); }
 
 function applyTheme() {
   document.body.dataset.theme = state.themeMode;
@@ -160,30 +162,16 @@ function handleNavClick(page) {
   navigateToPage(page);
 }
 
-async function getCurrentUser({ showLogin = true } = {}) {
+async function getCurrentUser() {
   const { data, error } = await supabase.auth.getSession();
   if (error) { console.warn('Supabase session error', error); return null; }
   state.currentUser = data?.session?.user || null;
-  if (state.currentUser) {
-    showToast(`Logged in as ${state.currentUser.email}`);
-  } else if (showLogin) {
-    renderTempLoginModal(true);
-  }
   syncAuthUI();
   updateLessonModuleAccuracyLabels();
   if (activePage() === 'lessons') updateLessonProgressSummary();
   if (state.selectedLessonTitle) updateModuleAnalysisPanels(state.selectedLessonTitle);
   if (state.currentUser) handleProfileOnboarding();
   return state.currentUser;
-}
-
-async function enforceAppAuthGate() {
-  if (!APP_AUTH_ROUTE) return true;
-  const user = await getCurrentUser({ showLogin: false });
-  if (user) return true;
-  if (hasAuthCallbackHash()) return true;
-  redirectToLanding();
-  return false;
 }
 
 async function bootApp() {
@@ -201,20 +189,21 @@ async function bootApp() {
       if (state.currentUser) handleProfileOnboarding();
       if (!state.currentUser) {
         document.querySelector('.profile-onboarding-backdrop')?.remove();
-        if (APP_AUTH_ROUTE && !hasAuthCallbackHash()) redirectToLanding();
-        else renderTempLoginModal(true);
+        if (!hasAuthCallbackHash()) redirectToLanding();
       }
     });
-    const canOpenApp = await enforceAppAuthGate();
-    if (!canOpenApp) return;
-    renderLessons();
-    getCurrentUser({ showLogin: !APP_AUTH_ROUTE }).then(user => {
-      if (user) return loadSupabaseQuestions();
-      return null;
-    }).catch(error => {
-      console.warn('Supabase init failed', error);
-      state.activeQuestions = questions;
-    });
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session && !hasAuthCallbackHash()) { redirectToLanding(); return; }
+    state.currentUser = session?.user || null;
+    syncAuthUI();
+    renderDashboard();
+    if (state.currentUser) {
+      handleProfileOnboarding();
+      loadSupabaseQuestions().catch(error => {
+        console.warn('Supabase init failed', error);
+        state.activeQuestions = questions;
+      });
+    }
   } catch (error) {
     console.error('Preview boot failed', error);
     const view = document.getElementById('view');
@@ -237,6 +226,11 @@ window.handleProfileOnboarding = handleProfileOnboarding;
 window.renderTempLoginModal = renderTempLoginModal;
 window.setOnboardingLicense = setOnboardingLicense;
 window.saveProfileOnboarding = saveProfileOnboarding;
+window.selectOnboardingCourse = selectOnboardingCourse;
+window.onboardingNextStep = onboardingNextStep;
+window.onboardingBack = onboardingBack;
+window.answerOnboardingTest = answerOnboardingTest;
+window.onboardingTestNext = onboardingTestNext;
 window.setProfileStatus = setProfileStatus;
 window.saveProfileSettings = saveProfileSettings;
 window.setSettingsLicense = window.setSettingsLicense || (() => {});

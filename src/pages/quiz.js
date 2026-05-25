@@ -160,7 +160,6 @@ export async function startProgressiveModuleQuiz(moduleName) {
   if (state.quizSessionActive && state.activeModuleName === moduleName) { continueQuiz(); return; }
   state.activeQuestions = questions;
   try {
-    if (!state.currentUser) throw new Error('No Supabase user session yet');
     if (!state.allQuestions.length) await loadSupabaseQuestions();
     const moduleRows = state.allQuestions.filter(q => q.module === moduleName);
     if (!moduleRows.length) {
@@ -168,11 +167,17 @@ export async function startProgressiveModuleQuiz(moduleName) {
       window.showToast?.(`${moduleName} quiz is coming soon.`);
       return;
     }
-    const moduleStats = await getModuleStats(moduleName);
+    let moduleStats = null, weakTopics = [], recentQuestionIds = new Set();
+    if (state.currentUser) {
+      moduleStats = await getModuleStats(moduleName);
+      const hasHistory = Boolean(moduleStats?.attempts);
+      if (hasHistory) {
+        weakTopics = await getWeakTopics(moduleName, 3);
+        recentQuestionIds = await getRecentQuestionIds(moduleName);
+      }
+    }
     const hasHistory = Boolean(moduleStats?.attempts);
     const ratios = hasHistory ? progressiveDifficultyRatios(Number(moduleStats.accuracy) || 0) : { 1: .60, 2: .30, 3: .10 };
-    const weakTopics = hasHistory ? await getWeakTopics(moduleName, 3) : [];
-    const recentQuestionIds = await getRecentQuestionIds(moduleName);
     const currentQuestions = selectProgressiveQuestions(moduleRows, 30, ratios, weakTopics, recentQuestionIds);
     state.activeQuestions = currentQuestions.map(normalizeQuestion);
     state.activeModuleName = moduleName;
@@ -181,13 +186,20 @@ export async function startProgressiveModuleQuiz(moduleName) {
     state.currentMode = hasHistory ? 'adaptive' : 'diagnostic';
     state.quizSelectionSummary = buildQuizSelectionSummary(currentQuestions, { mode: state.currentMode, moduleName, weakTopics, recentQuestionIds });
   } catch (error) {
-    console.warn('Using local preview questions.', error);
-    window.showToast?.('Using local preview questions.');
+    console.warn('Progressive quiz setup failed, using local fallback.', error);
+    // Try to use local module questions if available
+    const localRows = state.allQuestions.filter(q => q.module === moduleName);
     state.activeQuizTitle = `${moduleName} Quiz`;
     state.activeQuizMeta = `${moduleName} • Diagnostic`;
     state.activeModuleName = moduleName;
     state.currentMode = 'preview';
-    state.activeQuestions = questions;
+    if (localRows.length) {
+      const shuffled = [...localRows].sort(() => Math.random() - 0.5).slice(0, 30);
+      state.activeQuestions = shuffled.map(normalizeQuestion);
+    } else {
+      window.showToast?.('Using preview questions.');
+      state.activeQuestions = questions;
+    }
     state.quizSelectionSummary = buildQuizSelectionSummary(state.activeQuestions, { mode: state.currentMode, moduleName });
   }
   renderSetup();
@@ -197,7 +209,6 @@ export async function startLessonQuiz(title, meta, moduleName = 'Principles of F
   if (isActiveQuiz(title, meta)) { continueQuiz(); return; }
   state.activeQuestions = questions;
   try {
-    if (!state.currentUser) throw new Error('No Supabase user session yet');
     if (!state.allQuestions.length) await loadSupabaseQuestions();
     const moduleRows = state.allQuestions.filter(q => q.module === moduleName);
     if (!moduleRows.length) {
@@ -206,7 +217,7 @@ export async function startLessonQuiz(title, meta, moduleName = 'Principles of F
       return;
     }
     let weakTopics = [], recentQuestionIds = new Set(), currentQuestions;
-    if (selectionMode === 'adaptive') {
+    if (selectionMode === 'adaptive' && state.currentUser) {
       const weakest = await getWeakestTopic(moduleName);
       weakTopics = weakest ? [weakest] : [];
       recentQuestionIds = await getRecentQuestionIds(moduleName);
@@ -221,13 +232,19 @@ export async function startLessonQuiz(title, meta, moduleName = 'Principles of F
     state.currentMode = selectionMode === 'adaptive' ? 'adaptive' : 'diagnostic';
     state.quizSelectionSummary = buildQuizSelectionSummary(currentQuestions, { mode: state.currentMode, moduleName, weakTopics, recentQuestionIds });
   } catch (error) {
-    console.warn('Using local preview questions.', error);
-    window.showToast?.('Using local preview questions.');
+    console.warn('Lesson quiz setup failed, using local fallback.', error);
+    const localRows = state.allQuestions.filter(q => q.module === moduleName);
     state.activeQuizTitle = title;
     state.activeQuizMeta = meta;
     state.activeModuleName = moduleName;
     state.currentMode = 'preview';
-    state.activeQuestions = questions;
+    if (localRows.length) {
+      const shuffled = [...localRows].sort(() => Math.random() - 0.5).slice(0, 30);
+      state.activeQuestions = shuffled.map(normalizeQuestion);
+    } else {
+      window.showToast?.('Using preview questions.');
+      state.activeQuestions = questions;
+    }
     state.quizSelectionSummary = buildQuizSelectionSummary(state.activeQuestions, { mode: state.currentMode, moduleName });
   }
   renderSetup();
